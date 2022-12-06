@@ -2,3 +2,9 @@
 body {
     font-family: 'Work Sans', sans-serif;
 }
+.primary-color {
+    color: #333;
+}
+.secondary-color {
+    color: #999999;
+}
