@@ -67,21 +67,25 @@
     <section class="filter">
       <div class="container d-flex justify-content-between align-items-center">
         <div>
+          <!-- <p class="my-0 me-3">Danh sách sản phẩm</p> -->
           <i class="pe-4 fs-4 fa-solid fa-table-cells"></i>
           <i class="pe-4 fs-4 fa-solid fa-list"></i>
         </div>
         <div class="d-flex justify-content-between align-items-center">
-          <p class="my-0 me-3">Danh sách sản phẩm</p>
           <form action="">
             <caption>
-              Lọc theo điều kiện
+              Lọc theo hãng sản xuất  :
             </caption>
-            <input
+            <!-- <input
               id="js-filterInput"
               class="filter-input p-1 rounded-2"
               type="text"
               placeholder="vd: samsung"
-            />
+            /> -->
+            <select class="filter-input p-1 rounded-2" name="" id="js-filterInput">
+              <option value="samsung">Samsung</option>
+              <option value="iphone">Iphone</option>
+            </select>
           </form>
         </div>
       </div>
@@ -302,60 +306,51 @@
     </section>
     <!-- FOOTER -->
     <!-- MODAL -->
-    <section class="itemModal d-flex align-items-center">
-      <div class="modal__content w-75 mx-auto d-flex justify-content-center">
-        <div class="modal__content__img">
+    <section class="itemModal align-items-center">
+      <div class="modal__content w-75 mx-auto row justify-content-center">
+        <p><i class="closeModal fa-regular fa-circle-xmark"></i></p>
+        <div class="modal__content__img col-5">
           <img
-            class="d-block w-75 mx-0"
+            class="d-block w-100 mx-0"
             src="https://cdn.shopify.com/s/files/1/0023/4104/4283/products/4_800x.jpg?v=1643602786"
             alt="image"
           />
         </div>
-        <div class="modal__content__detail">
+        <div class="modal__content__detail col-7">
           <div class="mb-4">
             <h1 class="modal__deltail__name">Iphone 12 Promax</h1>
-            <p class="modal__deltail__price"><b>12.000.000đ</b></p>
-            <p>Thông tin chi tiết</p>
+            <p class="modal__deltail__price">12.000.000đ</p>
+            <p class="mb-1">Thông tin chi tiết</p>
             <div class="modal__deltail__des">
-              <ul>
+              <ul class="px-0">
                 <li>Tên sản phẩm:</li>
                 <li>Kích thước màn hình:</li>
                 <li>Độ phân giải camera trước:</li>
                 <li>Độ phân giải camera sau:</li>
                 <li>Hãng sản xuất:</li>
-                <li>Chi tiết sản phẩm</li>
+                <li>Chi tiết sản phẩm:</li>
                 <li>
                   Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                   Corrupti ea architecto velit doloremque maiores quis esse
                   sequi assumenda. Totam amet eos nemo reprehenderit blanditiis
                   dicta, nihil necessitatibus quisquam! Esse, consequuntur?
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Voluptatibus minus minima doloremque tenetur, sequi aliquid
+                  dolorum accusantium ipsam asperiores distinctio quaerat
+                  dolores magni debitis.
                 </li>
               </ul>
-              <div class="cart__quantity d-flex">
-                <button
-                  onclick="handlQuantityChange(event,'minus')"
-                  class="quantity-btn js-btn-minus"
-                >
-                  -
-                </button>
-                <input
-                  class="px-1 text-center js-count"
-                  type="number"
-                  value="0"
-                />
-                <button
-                  onclick="handlQuantityChange(event,'plus')"
-                  class="quantity-btn js-btn-plus"
-                >
-                  +
-                </button>
-                <div class="ms-3 cart__add">
-                  <button class="add__btn px-2">Thêm vào giỏ</button>
-                </div>
-              </div>
             </div>
           </div>
         </div>
+        <footer class="modal__footer">
+          <h3>SOCIAL SHARE</h3>
+          <div class="modal__footer__social">
+            <a href="#url" class="bg-fb fa-brands fa-facebook-f"></a>
+            <a href="#url" class="bg-tw fa-brands fa-twitter"></a>
+            <a href="#url" class="bg-gg fa-brands fa-google-plus-g"></a>
+          </div>
+        </footer>
       </div>
     </section>
     <!-- Bootstrap JS -->
