@@ -1,0 +1,67 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Work Sans, sans-serif;
+  }
+  .container {
+    max-width: 1280;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  // color
+  $c0-dark: #000;
+  $c0-light: #fff;
+  $c1-light: #f7f8fa;
+  $c0-danger: red;
+  $c0-secondary: #777;
+  $c1-secondary: #ededed;
+  // bg color
+  $bg0-light: #fff;
+  $bg0-dark: #000;
+  $bg1-light: #f7f8fa;
+  // fs
+  $text-base: 15px;
+  $text-2xl: 20px;
+  $text-3xl: 30px;
+  $text-4xl: 40px;
+  $text-5xl: 50px;
+  $text-6xl: 60px;
+  $text-7xl: 70px;
+  //fw
+  $fw-light: 200;
+  $fw-regular: 400;
+  $fw-semibold: 600;
+  $fw-bold: 700;
+  // variable
+  @mixin text($c, $fs, $fw) {
+    color: $c;
+    font-size: $fs;
+    font-weight: $fw;
+  }
+  .slider {
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .container {
+        display: flex;
+        justify-content: center;
+        
+        .slider-left {
+            width: 30%;
+            button {
+                width: 80%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-radius: 0;
+                background-color: $bg0-dark;
+                @include text($c0-light, $text-2xl ,$fw-semibold )
+            }
+        }
+        .slider-right {
+
+        }
+    }
+  }
