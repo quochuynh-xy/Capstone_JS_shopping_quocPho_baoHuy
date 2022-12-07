@@ -40,7 +40,7 @@
     font-weight: $fw;
   }
   .slider {
-    height: 500px;
+    height: 600px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -49,6 +49,7 @@
         justify-content: center;
         
         .slider-left {
+            position: relative;
             width: 30%;
             button {
                 width: 80%;
@@ -58,6 +59,18 @@
                 border-radius: 0;
                 background-color: $bg0-dark;
                 @include text($c0-light, $text-2xl ,$fw-semibold )
+            }
+            .drop-cont {
+                .card-body {
+                    border-radius: 0;
+                    min-height: auto;
+                    // position: absolute;
+                    a {
+                        text-decoration: none;
+                        @include text($c0-secondary, $text-base , $fw-regular );
+                        line-height: 30px;
+                    }
+                }
             }
         }
         .slider-right {

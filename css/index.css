@@ -12,7 +12,7 @@
 }
 
 .slider {
-  height: 500px;
+  height: 600px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,6 +22,7 @@
   justify-content: center;
 }
 .slider .container .slider-left {
+  position: relative;
   width: 30%;
 }
 .slider .container .slider-left button {
@@ -34,4 +35,15 @@
   color: #fff;
   font-size: 20px;
   font-weight: 600;
+}
+.slider .container .slider-left .drop-cont .card-body {
+  border-radius: 0;
+  min-height: auto;
+}
+.slider .container .slider-left .drop-cont .card-body a {
+  text-decoration: none;
+  color: #777;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 30px;
 }
