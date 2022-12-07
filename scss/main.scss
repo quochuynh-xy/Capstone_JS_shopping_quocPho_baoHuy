@@ -1,0 +1,221 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:Work Sans,sans-serif;
+}
+.container {
+    max-width: 1280;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+// color
+$c0-dark: #000;
+$c0-light: #fff;
+$c1-light: #f7f8fa;
+$c0-danger:red;
+$c0-secondary:#777;
+$c1-secondary:#ededed;
+// bg color
+$bg0-light: #fff;
+$bg0-dark: #000;
+$bg1-light: #f7f8fa;
+// fs
+$text-base: 15px;
+$text-2xl: 20px;
+$text-3xl: 30px;
+$text-4xl: 40px;
+$text-5xl: 50px;
+$text-6xl: 60px;
+$text-7xl: 70px;
+//fw
+$fw-light:200;
+$fw-regular: 400;
+$fw-semibold:600;
+$fw-bold: 700;
+// variable
+@mixin text ($c, $fs, $fw) {
+    color: $c;
+    font-size: $fs;
+    font-weight: $fw;
+}
+.header {
+    .top-cont {
+        background-color: $bg0-dark;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        .container{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .cont-left {
+                position: relative;
+                display: flex;
+                .cont-hover {
+                    &:hover {
+                        ul {
+                            transform: translate(-30px,25px);
+                            visibility: visible;
+                            transition: all 0.5s;
+                        }
+                    }
+                    span {
+                        color: $c0-light;
+                        font-size: $text-base;
+                        font-weight: $fw-regular;
+                        margin-right: 10px;
+                        display: inline-block;
+                    }
+                    i {
+                        color: $c0-light;
+                        font-size: $text-base;
+                        margin-left: 5px;
+                    }
+                    ul {
+                        visibility: hidden;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        transform: translate(-30px, 35px);
+                        li {
+                            color: $c0-secondary;
+                            list-style: none;
+                            font-size: $text-base;
+                            font-weight: $fw-regular;
+                            padding: 5px;
+                            background-color: $bg0-light;
+                            &:hover {
+                                transform: translateX(5px);
+                                transition: all 0.5s;
+                            }
+                        }
+                    }
+                }
+                span {
+                    color: $bg0-light;
+                    font-size: $text-base;
+                    font-weight: $fw-regular;
+                    
+                }    
+                a {
+                    text-decoration: none;
+                    color: $c0-light;
+                    font-size: $text-base;
+                    font-weight: $fw-regular;
+                }
+            }
+            .cont-right {
+                a {
+                    text-decoration: none;
+                    color: $c0-light;
+                    font-size: $text-base;
+                    font-weight: $fw-regular;
+                    &:hover {
+                        color: $c0-danger;
+                        transition: all 0.5s;
+                    }
+                }
+                span {
+                    color: $c0-light;
+                    font-size: $text-base;
+                    font-weight: $fw-regular;
+                }
+            }
+        }
+    }
+}
+.header {
+    .brand-name{
+        height: 150px;
+        display: flex;
+        justify-content: center;
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .logo {
+                a{
+                    text-decoration: none;
+                    color: $c0-dark;
+                    font-size: $text-6xl;
+                    font-weight: $fw-bold;
+                }
+            }
+            .search{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                input {
+                    &:focus {
+                        outline: 0;
+                        border: solid $c0-secondary 1px;
+                    }
+                    width: 300px;
+                    height: 30px;
+                    padding: 20px 10px;
+                    border-radius: 10px;
+                    border: solid $c1-secondary 1px;
+                    background-color: $bg1-light;
+                }
+                i {
+                    font-size: $text-base;
+                    color: $c0-secondary;
+                    position: absolute ;
+                    top: 30%;
+                    right: 5%;
+                }
+            }
+            .icon {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .icon-1 {
+                    margin-right: 10px;
+                    &:hover {
+                        i {
+                            color: $c0-danger;
+                            transition: all 0.5s;
+                        }
+                        span {
+                            color: $c0-danger;
+                            transition: all 0.5s;
+                        }
+                    }
+                    i {
+                        color: $c0-dark;   
+                        font-size: $text-3xl;
+                        margin-right: 5px;
+                    }
+                    span {  
+                        color: $c0-dark;
+                        font-size: $text-2xl;
+                    }
+
+                }
+                .icon-2 {
+                    &:hover {
+                        i {
+                            color: $c0-danger;
+                            transition: all 0.5s;
+                        }
+                        span {
+                            color: $c0-danger;
+                            transition: all 0.5s;
+                        }
+                    }
+                    i {
+                        color: $c0-dark;   
+                        font-size: $text-3xl;
+                        margin-right: 5px;
+                    }
+                    span {
+                        color: $c0-dark;
+                        font-size: $text-2xl;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -5,11 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>E-shop</title>
-    <!-- Font -->
+    <!-- GG Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,800;1,100;1,800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;400;600;700&display=swap"
       rel="stylesheet"
     />
     <!-- Boostrap -->
@@ -35,27 +35,30 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
     <!-- Main CSS -->
-    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/main.min.css" />
     <!-- Index CSS -->
     <link rel="stylesheet" href="./css/index.css" />
   </head>
   <body>
     <!--Header  -->
     <header class="header">
-      <div class="header-top">
-        <div class="top-cont container9x">
+      <div class="top-cont">
+        <div class="container ">
           <div class="cont-left">
-            <select name="currency" id="currency-select">
-              <option value="USD">USD - US Dollar</option>
-              <option value="EUR">EUR - Euro</option>
-              <option value="GPB">GPB - Bristish Pound</option>
-              <option value="INR">INR - Indian Rupee</option>
-              <option value="BDT">BDT - Bangladesh Taka</option>
-              <option value="JPY">JPY - Japan Yen</option>
-              <option value="CAD">CAD - Canada Dollar</option>
-              <option value="AUD">AUD - Australian Dollar</option>
-            </select>
-            <span>Order Online Call Us (0123) 456789</span>
+            <div class="cont-hover">
+              <span>Currency<i class="fa-solid fa-angle-down"></i></span>
+              <ul>
+                <li>USD - US Dollar</li>
+                <li>EUR - Euro</li>
+                <li>GBP - British Pound</li>
+                <li>INR - Indian Rupee</li>
+                <li>BDT - Bangladesh Taka</li>
+                <li>JPY - Japan Yen</li>
+                <li>CAD - Canada Dollar</li>
+                <li>AUD - Australian Dollar</li>
+              </ul>
+            </div>
+            <span>Order Online Call Us <a href="tel"> (0123) 456789</a></span>
           </div>
           <div class="cont-right">
             <a href="">Sign In</a>
@@ -64,20 +67,22 @@
           </div>
         </div>
       </div>
-      <div class="brand-name container9x">
-        <div class="logo">
-          <a href="">astor</a>
-        </div>
-        <div class="search">
-          <input type="search" placeholder="Search our store" />
-          <i class="fa-solid fa-magnifying-glass"></i>
-        </div>
-        <div class="icon">
-          <div class="icon-1">
-            <i class="fa-regular fa-heart"></i> <span>WISHLIST</span>
+      <div class="brand-name">
+        <div class="container">
+          <div class="logo">
+            <a href="">astor</a>
           </div>
-          <div class="icon-2">
-            <i class="fa-solid fa-cart-shopping"></i> <span>MY CART</span>
+          <div class="search">
+            <input type="search" placeholder="Search our store" />
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
+          <div class="icon">
+            <div class="icon-1">
+              <i class="fa-regular fa-heart"></i> <span>WISHLIST</span>
+            </div>
+            <div class="icon-2">
+              <i class="fa-solid fa-cart-shopping"></i> <span>MY CART</span>
+            </div>
           </div>
         </div>
       </div>
@@ -90,9 +95,55 @@
             <a href="">Service</a>
           </div>
         </div>
-       
-        <a href="">IPHONE</a>
-        <a href="">SAMSUNG</a>
+        <div class="nav-2">
+          <a href="">IPHONE</a>
+          <div class="nav-2__item">
+            <div class="item">
+              <a href="">Iphone 11</a>
+              <a href="">Iphone 11 Mini</a>
+              <a href="">Iphone 11 Pro</a>
+              <a href="">Iphone 11 Pro Max </a>
+            </div>
+            <div class="item">
+              <a href="">Iphone 12</a>
+              <a href="">Iphone 12 Mini</a>
+              <a href="">Iphone 12 Pro</a>
+              <a href="">Iphone 12 Pro Max </a>
+            </div>
+            <div class="item">
+              <a href="">Iphone 13</a>
+              <a href="">Iphone 13 Mini</a>
+              <a href="">Iphone 13 Pro</a>
+              <a href="">Iphone 13 Pro Max </a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-3">
+          <a href="">SAMSUNG</a>
+          <div class="nav-3__item">
+            <div class="item">
+              <a href="">item1</a>
+              <a href="">item1</a>
+              <a href="">item1</a>
+              <a href="">item1</a>
+              <a href="">item1</a>
+            </div>
+            <div class="item">
+              <a href="">item2</a>
+              <a href="">item2</a>
+              <a href="">item2</a>
+              <a href="">item2</a>
+              <a href="">item2</a>
+            </div>
+            <div class="item">
+              <a href="">item3</a>
+              <a href="">item3</a>
+              <a href="">item3</a>
+              <a href="">item3</a>
+              <a href="">item3</a>
+            </div>
+          </div>
+        </div>
         <a href="">ABOUT US</a>
         <a href="">CONTACT</a>
       </div>
