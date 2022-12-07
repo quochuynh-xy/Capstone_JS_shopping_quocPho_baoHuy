@@ -1,6 +1,9 @@
 var apiURL =
   "https://6388b326a4bb27a7f78f1ccc.mockapi.io/api/BC38_API/products";
+// productsList chứa danh sách các sản phẩm.
 var productsList = [];
+// cart: chứa các sản phẩm trong giỏ hàng.
+var cart = [];
 // Hàm thay đổi số lượng sản phẩm
 function handlQuantityChange(e, type) {
   // parent của thẻ input, chứa các nút nhấn và nút tăng giảm số lượng sp
@@ -120,12 +123,28 @@ function filterProduct() {
       var totalData = response.data;
       for (let i = 0; i < totalData.length; i++) {
         if (totalData[i].type.includes(keywords)) {
-            filteredData.push(totalData[i])
+          filteredData.push(totalData[i]);
         }
       }
-      renderProduct(filteredData)
+      renderProduct(filteredData);
     })
     .catch(function (error) {
       console.log(error);
     });
+}
+
+// Modal
+var openModal = document.querySelectorAll(".item .item__info__name");
+for (let i = 0; i < openModal.length; i++) {
+  openModal[i].addEventListener("click", handleModal);
+}
+var iconClose = document.querySelector(".modal__content .closeModal");
+var modal = document.querySelector(".itemModal");
+iconClose.addEventListener("click", handleModal);
+modal.addEventListener("click", function (e) {
+  if (e.target == e.currentTarget) handleModal();
+});
+function handleModal() {
+  document.querySelector(".itemModal").classList.toggle("active");
+  document.querySelector("body").classList.toggle("hide");
 }
