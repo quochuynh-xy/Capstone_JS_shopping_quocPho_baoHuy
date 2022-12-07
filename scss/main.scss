@@ -1,21 +1,21 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family:Work Sans,sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Work Sans, sans-serif;
 }
 .container {
-    max-width: 1280;
-    margin: 0 auto;
-    padding: 0 15px;
+  max-width: 1280;
+  margin: 0 auto;
+  padding: 0 15px;
 }
 // color
 $c0-dark: #000;
 $c0-light: #fff;
 $c1-light: #f7f8fa;
-$c0-danger:red;
-$c0-secondary:#777;
-$c1-secondary:#ededed;
+$c0-danger: red;
+$c0-secondary: #777;
+$c1-secondary: #ededed;
 // bg color
 $bg0-light: #fff;
 $bg0-dark: #000;
@@ -29,193 +29,332 @@ $text-5xl: 50px;
 $text-6xl: 60px;
 $text-7xl: 70px;
 //fw
-$fw-light:200;
+$fw-light: 200;
 $fw-regular: 400;
-$fw-semibold:600;
+$fw-semibold: 600;
 $fw-bold: 700;
 // variable
-@mixin text ($c, $fs, $fw) {
-    color: $c;
-    font-size: $fs;
-    font-weight: $fw;
+@mixin text($c, $fs, $fw) {
+  color: $c;
+  font-size: $fs;
+  font-weight: $fw;
 }
 .header {
-    .top-cont {
-        background-color: $bg0-dark;
-        height: 50px;
+  .top-cont {
+    background-color: $bg0-dark;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .cont-left {
+        position: relative;
         display: flex;
-        justify-content: center;
-        .container{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            .cont-left {
-                position: relative;
-                display: flex;
-                .cont-hover {
-                    &:hover {
-                        ul {
-                            transform: translate(-30px,25px);
-                            visibility: visible;
-                            transition: all 0.5s;
-                        }
-                    }
-                    span {
-                        color: $c0-light;
-                        font-size: $text-base;
-                        font-weight: $fw-regular;
-                        margin-right: 10px;
-                        display: inline-block;
-                    }
-                    i {
-                        color: $c0-light;
-                        font-size: $text-base;
-                        margin-left: 5px;
-                    }
-                    ul {
-                        visibility: hidden;
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        transform: translate(-30px, 35px);
-                        li {
-                            color: $c0-secondary;
-                            list-style: none;
-                            font-size: $text-base;
-                            font-weight: $fw-regular;
-                            padding: 5px;
-                            background-color: $bg0-light;
-                            &:hover {
-                                transform: translateX(5px);
-                                transition: all 0.5s;
-                            }
-                        }
-                    }
-                }
-                span {
-                    color: $bg0-light;
-                    font-size: $text-base;
-                    font-weight: $fw-regular;
-                    
-                }    
-                a {
-                    text-decoration: none;
-                    color: $c0-light;
-                    font-size: $text-base;
-                    font-weight: $fw-regular;
-                }
+        .cont-hover {
+          &:hover {
+            ul {
+              transform: translate(-30px, 25px);
+              visibility: visible;
+              transition: all 0.5s;
             }
-            .cont-right {
-                a {
-                    text-decoration: none;
-                    color: $c0-light;
-                    font-size: $text-base;
-                    font-weight: $fw-regular;
-                    &:hover {
-                        color: $c0-danger;
-                        transition: all 0.5s;
-                    }
-                }
-                span {
-                    color: $c0-light;
-                    font-size: $text-base;
-                    font-weight: $fw-regular;
-                }
+          }
+          span {
+            color: $c0-light;
+            font-size: $text-base;
+            font-weight: $fw-regular;
+            margin-right: 10px;
+            display: inline-block;
+          }
+          i {
+            color: $c0-light;
+            font-size: $text-base;
+            margin-left: 5px;
+          }
+          ul {
+            visibility: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: translate(-30px, 35px);
+            width: 80%;
+            li {
+              color: $c0-secondary;
+              list-style: none;
+              font-size: $text-base;
+              font-weight: $fw-regular;
+              padding: 5px;
+              background-color: $bg0-light;
+              &:hover {
+                transform: translateX(5px);
+                transition: all 0.5s;
+              }
             }
+          }
         }
+        span {
+          color: $bg0-light;
+          font-size: $text-base;
+          font-weight: $fw-regular;
+        }
+        a {
+          text-decoration: none;
+          color: $c0-light;
+          font-size: $text-base;
+          font-weight: $fw-regular;
+        }
+      }
+      .cont-right {
+        a {
+          text-decoration: none;
+          color: $c0-light;
+          font-size: $text-base;
+          font-weight: $fw-regular;
+          &:hover {
+            color: $c0-danger;
+            transition: all 0.5s;
+          }
+        }
+        span {
+          color: $c0-light;
+          font-size: $text-base;
+          font-weight: $fw-regular;
+        }
+      }
     }
+  }
 }
 .header {
-    .brand-name{
-        height: 150px;
+  .brand-name {
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .logo {
+        a {
+          text-decoration: none;
+          color: $c0-dark;
+          font-size: $text-6xl;
+          font-weight: $fw-bold;
+        }
+      }
+      .search {
         display: flex;
         justify-content: center;
-        .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            .logo {
-                a{
-                    text-decoration: none;
-                    color: $c0-dark;
-                    font-size: $text-6xl;
-                    font-weight: $fw-bold;
-                }
-            }
-            .search{
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                position: relative;
-                input {
-                    &:focus {
-                        outline: 0;
-                        border: solid $c0-secondary 1px;
-                    }
-                    width: 300px;
-                    height: 30px;
-                    padding: 20px 10px;
-                    border-radius: 10px;
-                    border: solid $c1-secondary 1px;
-                    background-color: $bg1-light;
-                }
-                i {
-                    font-size: $text-base;
-                    color: $c0-secondary;
-                    position: absolute ;
-                    top: 30%;
-                    right: 5%;
-                }
-            }
-            .icon {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                .icon-1 {
-                    margin-right: 10px;
-                    &:hover {
-                        i {
-                            color: $c0-danger;
-                            transition: all 0.5s;
-                        }
-                        span {
-                            color: $c0-danger;
-                            transition: all 0.5s;
-                        }
-                    }
-                    i {
-                        color: $c0-dark;   
-                        font-size: $text-3xl;
-                        margin-right: 5px;
-                    }
-                    span {  
-                        color: $c0-dark;
-                        font-size: $text-2xl;
-                    }
-
-                }
-                .icon-2 {
-                    &:hover {
-                        i {
-                            color: $c0-danger;
-                            transition: all 0.5s;
-                        }
-                        span {
-                            color: $c0-danger;
-                            transition: all 0.5s;
-                        }
-                    }
-                    i {
-                        color: $c0-dark;   
-                        font-size: $text-3xl;
-                        margin-right: 5px;
-                    }
-                    span {
-                        color: $c0-dark;
-                        font-size: $text-2xl;
-                    }
-                }
-            }
+        align-items: center;
+        position: relative;
+        input {
+          &:focus {
+            outline: 0;
+            border: solid $c0-secondary 1px;
+          }
+          width: 300px;
+          height: 30px;
+          padding: 20px 10px;
+          border-radius: 10px;
+          border: solid $c1-secondary 1px;
+          background-color: $bg1-light;
         }
+        i {
+          font-size: $text-base;
+          color: $c0-secondary;
+          position: absolute;
+          top: 30%;
+          right: 5%;
+        }
+      }
+      .icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .icon-1 {
+          margin-right: 10px;
+          &:hover {
+            i {
+              color: $c0-danger;
+              transition: all 0.5s;
+            }
+            span {
+              color: $c0-danger;
+              transition: all 0.5s;
+            }
+          }
+          i {
+            color: $c0-dark;
+            font-size: $text-3xl;
+            margin-right: 5px;
+          }
+          span {
+            color: $c0-dark;
+            font-size: $text-2xl;
+          }
+        }
+        .icon-2 {
+          &:hover {
+            i {
+              color: $c0-danger;
+              transition: all 0.5s;
+            }
+            span {
+              color: $c0-danger;
+              transition: all 0.5s;
+            }
+          }
+          i {
+            color: $c0-dark;
+            font-size: $text-3xl;
+            margin-right: 5px;
+          }
+          span {
+            color: $c0-dark;
+            font-size: $text-2xl;
+          }
+        }
+      }
     }
+  }
+}
+.header {
+  .nav {
+    background-color: $bg0-dark;
+    height: 50px;
+    a {
+      text-decoration: none;
+      display: block;
+    }
+    .container {
+      position: relative;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      .nav-1 {
+        a {
+          @include text($c0-light, $text-2xl, $fw-regular);
+        }
+        .nav-1__item {
+          visibility: hidden;
+          position: absolute;
+          background-color: $bg0-light;
+          width: 250px;
+          height: 150px;
+          padding: 10px 25px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          bottom: 0;
+          transform: translate(0%, 105%);
+          a {
+            line-height: 40px;
+            @include text($c0-secondary, $text-2xl, $fw-regular);
+            &:hover {
+              color: $c0-dark;
+              border-bottom: solid $c1-secondary solid;
+              transition: all 0.5s;
+            }
+          }
+        }
+        &:hover {
+          .nav-1__item {
+            transform: translate(0%, 100%);
+            transition: all 0.5s;
+            visibility: visible;
+          }
+        }
+      }
+      .nav-2 {
+        a {
+          @include text($c0-light, $text-2xl, $fw-regular);
+        }
+        .nav-2__item {
+          display: flex;
+          background-color: $bg0-light;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+          padding: 10px 40px;
+          justify-content: space-between;
+          align-items: center;
+          visibility: hidden;
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          transform: translate(-50%, 5%);
+          width: 60%;
+          a {
+            @include text($c0-secondary, $text-2xl, $fw-regular);
+            line-height: 50px;
+          }
+          .item {
+            padding: 20px;
+            margin-right: 20px;
+            border-right: solid $c0-secondary 1px;
+            a:first-of-type {
+              margin-bottom: 10px;
+            }
+          }
+        }
+        &:hover {
+          .nav-2__item {
+            overflow: hidden;
+            transform: translate(-50%, 0%);
+            visibility: visible;
+            transition: all 0.5s;
+          }
+        }
+      }
+      .nav-3 {
+        a {
+          @include text($c0-light, $text-2xl, $fw-regular);
+        }
+        .nav-3__item{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 10px;
+          width: 60%;
+          background-color: $bg0-light;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+          visibility: hidden;
+          position: absolute;
+          top: 0;
+          left: 50%;
+          transform: translate(-50%, 35%);
+          a {
+            @include text($c0-secondary, $text-2xl, $fw-regular);
+          }
+          a:first-of-type {
+            margin-bottom: 10px;
+          }
+          .item {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 50%;
+            border-right: solid $c0-secondary 1px;
+          }
+        }
+        &:hover {
+          .nav-3__item{
+            transform: translate(-50%, 30%);
+            transition: all 0.5s;
+            visibility: visible;
+          }
+        }
+      }
+      .nav-4 {
+        a {
+          @include text($c0-light, $text-2xl, $fw-regular);
+        }
+      }
+      .nav-5 {
+        a {
+          @include text($c0-light, $text-2xl, $fw-regular);
+        }
+      }
+    }
+  }
 }
