@@ -85,7 +85,6 @@ $fw-bold: 700;
             width: 80%;
             z-index: 100;
             li {
-              
               color: $c0-secondary;
               list-style: none;
               font-size: $text-base;
@@ -241,7 +240,10 @@ $fw-bold: 700;
       justify-content: center;
       align-items: center;
       .nav-1 {
+        height: 100%;
         width: 10%;
+        align-items: center;
+        display: flex;
         a {
           @include text($c0-light, $text-base, $fw-regular);
         }
@@ -281,7 +283,7 @@ $fw-bold: 700;
         }
         &:hover {
           .nav-1__item {
-            transform: translate(0%, 105%);
+            transform: translate(0%, 100%);
             transition: all 0.5s;
             visibility: visible;
           }
@@ -289,6 +291,9 @@ $fw-bold: 700;
       }
       .nav-2 {
         width: 10%;
+        height: 100%;
+        align-items: center;
+        display: flex;
         a {
           @include text($c0-light, $text-base, $fw-regular);
         }
@@ -337,14 +342,17 @@ $fw-bold: 700;
         &:hover {
           .nav-2__item {
             overflow: hidden;
-            transform: translate(-50%, 5%);
+            transform: translate(-50%, 0);
             visibility: visible;
             transition: all 0.5s;
           }
         }
       }
       .nav-3 {
+        height: 100%;
         width: 10%;
+        align-items: center;
+        display: flex;
         a {
           @include text($c0-light, $text-base, $fw-regular);
         }
@@ -363,6 +371,7 @@ $fw-bold: 700;
           left: 50%;
           transform: translate(-50%, 35%);
           a {
+            line-height: 50px;
             position: relative;
             @include text($c0-secondary, $text-base, $fw-regular);
             &:hover {
@@ -394,20 +403,26 @@ $fw-bold: 700;
         }
         &:hover {
           .nav-3__item {
-            transform: translate(-50%, 30%);
+            transform: translate(-50%, 27%);
             transition: all 0.5s;
             visibility: visible;
           }
         }
       }
       .nav-4 {
+        height: 100%;
         width: 10%;
+        align-items: center;
+        display: flex;
         a {
           @include text($c0-light, $text-base, $fw-regular);
         }
       }
       .nav-5 {
+        height: 100%;
         width: 10%;
+        align-items: center;
+        display: flex;
         a {
           @include text($c0-light, $text-base, $fw-regular);
         }

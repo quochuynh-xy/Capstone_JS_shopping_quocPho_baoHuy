@@ -195,7 +195,10 @@
   align-items: center;
 }
 .header .nav .container .nav-1 {
+  height: 100%;
   width: 10%;
+  align-items: center;
+  display: flex;
 }
 .header .nav .container .nav-1 a {
   color: #fff;
@@ -239,12 +242,15 @@
   transition: all 0.5s;
 }
 .header .nav .container .nav-1:hover .nav-1__item {
-  transform: translate(0%, 105%);
+  transform: translate(0%, 100%);
   transition: all 0.5s;
   visibility: visible;
 }
 .header .nav .container .nav-2 {
   width: 10%;
+  height: 100%;
+  align-items: center;
+  display: flex;
 }
 .header .nav .container .nav-2 a {
   color: #fff;
@@ -297,12 +303,15 @@
 }
 .header .nav .container .nav-2:hover .nav-2__item {
   overflow: hidden;
-  transform: translate(-50%, 5%);
+  transform: translate(-50%, 0);
   visibility: visible;
   transition: all 0.5s;
 }
 .header .nav .container .nav-3 {
+  height: 100%;
   width: 10%;
+  align-items: center;
+  display: flex;
 }
 .header .nav .container .nav-3 a {
   color: #fff;
@@ -325,6 +334,7 @@
   transform: translate(-50%, 35%);
 }
 .header .nav .container .nav-3 .nav-3__item a {
+  line-height: 50px;
   position: relative;
   color: #777;
   font-size: 15px;
@@ -356,12 +366,15 @@
   border-right: solid #777 1px;
 }
 .header .nav .container .nav-3:hover .nav-3__item {
-  transform: translate(-50%, 30%);
+  transform: translate(-50%, 27%);
   transition: all 0.5s;
   visibility: visible;
 }
 .header .nav .container .nav-4 {
+  height: 100%;
   width: 10%;
+  align-items: center;
+  display: flex;
 }
 .header .nav .container .nav-4 a {
   color: #fff;
@@ -369,7 +382,10 @@
   font-weight: 400;
 }
 .header .nav .container .nav-5 {
+  height: 100%;
   width: 10%;
+  align-items: center;
+  display: flex;
 }
 .header .nav .container .nav-5 a {
   color: #fff;
