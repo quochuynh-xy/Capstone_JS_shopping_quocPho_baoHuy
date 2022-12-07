@@ -5,6 +5,18 @@
   list-style: none;
   font-size: 16px;
 }
+.bg-fb {
+  background-color: #3b5998;
+}
+.bg-tw {
+  background-color: #1da1f2;
+}
+.bg-gg {
+  background-color: #dd4e3f;
+}
+.hide {
+  overflow: hidden;
+}
 /* Color options */
 .color-1 {
   background-color: #a92015;
@@ -91,6 +103,13 @@ body {
 .products__items .item__info__name {
   font-size: 1.1rem;
   margin-top: 1.5rem;
+  cursor: pointer;
+  transition-duration: 0.3s;
+}
+.products__items .item__info__name:hover {
+  color: #ee4d2d;
+  font-weight: 600;
+  text-decoration: underline;
 }
 .products__items .item .item__info__cart {
   background-color: #ee4d2d;
@@ -225,6 +244,9 @@ body {
 }
 /* SINGLE PRODUCT MODAL */
 .itemModal {
+  display: none;
+}
+.itemModal.active {
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -232,12 +254,34 @@ body {
   z-index: 10;
   top: 0;
   left: 0;
+  animation: showModal 0.3s ease-in-out;
+  display: flex;
 }
+/* .itemModal {} */
+/* body {
+  overflow: hidden;
+} */
 .modal__content {
   background-color: #fff;
   border-radius: 5px;
   padding: 2rem;
   max-width: 1000px;
+  max-height: 80vh;
+  position: relative;
+  box-sizing: content-box;
+  overflow-y: scroll;
+}
+.modal__content .closeModal {
+  position: absolute;
+  right: 20px;
+  top: 16px;
+  text-align: right;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.modal__content .closeModal:hover {
+  color: #dd4e3f;
 }
 .modal__content__detail .modal__deltail__name {
   color: #696969;
@@ -250,7 +294,7 @@ body {
 }
 .modal__content__detail .modal__deltail__price {
   color: #333;
-  font-size: 18px;
+  font-size: 24px;
   font-weight: 600;
   line-height: 28px;
 }
@@ -259,4 +303,34 @@ body {
   font-size: 15px;
   line-height: 26px;
   margin-bottom: 20px;
+}
+.modal__content__detail .modal__deltail__des li {
+  line-height: 1.6;
+}
+.modal__footer {
+  text-align: center;
+  border-top: #77777762 1px solid;
+}
+.modal__footer h3 {
+  padding-top: 20px;
+  margin-bottom: 1rem;
+  font-weight: 300;
+}
+.modal__footer__social a {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1.2rem;
+  line-height: 40px;
+  margin: 0 4px;
+  text-decoration: none;
+}
+@keyframes showModal{
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
