@@ -19,22 +19,23 @@ window.onload = function () {
   getCartDataFromLocal();
 };
 // Hàm thay đổi số lượng sản phẩm
-function handlQuantityChange(e, type) {
+function handlQuantityChange(e, type, stock) {
+  // stock: số lượng item tối đa:
   // parent của thẻ input, chứa các nút nhấn và nút tăng giảm số lượng sp
   var parent = e.target.parentElement;
   // chọn đến đối tượng ô input
   var quantity = parent.querySelector(".js-count").value * 1;
   //xử lý cộng trừ số lượng sp:
   //Nếu type = minus thì trừ, plus thì cộng.
-  // quantity>=0 và <=10
+  // quantity>=0 và <= stock
   if (type == "minus") {
     quantity -= 1;
   } else {
     quantity += 1;
   }
   // Sau khi cộng chán chê, kiểm tra lại số lượng.
-  // Nếu > 10 thì giới hạn là 10, nếu
-  quantity > 10 ? (quantity = 10) : quantity;
+  // Nếu > stock thì giới hạn là stock, nếu < 0 thì là 0
+  quantity > stock ? (quantity = stock) : quantity;
   quantity < 0 ? (quantity = 0) : quantity;
   // Đưa số lượng quantity vào ô input
   parent.querySelector(".js-count").value = quantity;
@@ -91,7 +92,7 @@ function renderProduct(data) {
             <div class="add-to-cart d-flex w-100">
             <div class="cart__quantity d-flex">
                 <button
-                onclick="handlQuantityChange(event,'minus')"
+                onclick="handlQuantityChange(event,'minus',${data[i].stock})"
                 class="quantity-btn js-btn-minus"
                 >
                 -
@@ -102,7 +103,7 @@ function renderProduct(data) {
                 value="1"
                 />
                 <button
-                onclick="handlQuantityChange(event,'plus')"
+                onclick="handlQuantityChange(event,'plus',${data[i].stock})"
                 class="quantity-btn js-btn-plus"
                 >
                 +
@@ -188,25 +189,34 @@ function handleRenderCart() {
   for (let i = 0; i < renderData.length; i++) {
     totalBill += renderData[i].product.price * renderData[i].quantity;
     carthtml += `<section class="item__list">
+                    <span class="js-item-remove item__remove">Xóa</span>
                     <div class="item__img">
                       <img
                         src="${renderData[i].product.img}"
-                        alt="Item img"
+                        alt="${renderData[i].product.name}"
                       />
                     </div>
                     <div class="item__info">
                       <h4 class="item__name">${renderData[i].product.name}</h4>
-                      <p class="item__count">Số lượng:<span>${
-                        renderData[i].quantity
-                      }</span></p>
                       <p class="item__price">Đơn giá:<span>${
                         renderData[i].product.price
-                      }</span></p>
+                      }đ</span></p>
+                      <div class="item__count">
+                        <p>Số lượng:</p>
+                        <div class="item-control">
+                          <span class="js-item-minus ctrl-btn fw-bold">-</span>
+                          <span class=""><input class="item-quantity fw-bolder text-center" type="text" value="${
+                            renderData[i].quantity
+                          }"></span>
+                          <span class="js-item-plus ctrl-btn fw-bold">+</span>
+                        </div>
+                      </div>
                       <p class="item__sum-price">Thành tiền:<span>${
                         renderData[i].product.price * renderData[i].quantity
-                      }</span></p>
+                      }đ</span></p>
                     </div>
-                  </section>`;
+                  </section>
+                  `;
   }
   document.getElementById("listOfItems").innerHTML = carthtml;
   document.querySelector(".js-total-bill").innerHTML = totalBill;
@@ -236,14 +246,16 @@ function handleModal() {
   document.querySelector("body").classList.toggle("hide");
 }
 // Cart
-var cartOpen = document.querySelector('.header .brand-name .container .icon .icon-2');
+var cartOpen = document.querySelector(
+  ".header .brand-name .container .icon .icon-2"
+);
 var cartCheckout = document.querySelector(".cart");
-var cartCheckoutCloseBtn = document.querySelector('.js-close-cart');
+var cartCheckoutCloseBtn = document.querySelector(".js-close-cart");
 function handleCart() {
-  cartCheckout.classList.toggle("active")
+  cartCheckout.classList.toggle("active");
 }
 cartCheckoutCloseBtn.addEventListener("click", handleCart);
-cartOpen.addEventListener("click", ()=> {
+cartOpen.addEventListener("click", () => {
   handleCart();
   handleRenderCart();
-})
+});
