@@ -6,7 +6,8 @@ function Products(
     _frontCamera,
     _img,
     _desc,
-    _type
+    _type,
+    _stock
   ) {
     (this.name = _name),
       (this.price = _price),
@@ -16,4 +17,5 @@ function Products(
       (this.img = _img),
       (this.desc = _desc),
       (this.type = _type);
+      (thi.stock = _stock)
   }

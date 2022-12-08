@@ -11,15 +11,20 @@
   }
   // color
   $c0-dark: #000;
+  $c1-dark: #243743;
   $c0-light: #fff;
   $c1-light: #f7f8fa;
   $c0-danger: red;
   $c0-secondary: #777;
   $c1-secondary: #ededed;
+  $c0-warning : #f5cc26;
   // bg color
   $bg0-light: #fff;
   $bg0-dark: #000;
+  $bg1-dark: #333333;
+  $bg2-dark: #222222;
   $bg1-light: #f7f8fa;
+  $bg0-secondary: #777;
   // fs
   $text-base: 15px;
   $text-2xl: 20px;
@@ -42,17 +47,16 @@
   .slider {
     height: 600px;
     display: flex;
-    justify-content: center;
     align-items: center;
     .container {
-        display: flex;
-        justify-content: center;
-        
+        display: grid;
+        grid-template-columns: 1fr 2fr; 
+        gap: 10px   ;
         .slider-left {
             position: relative;
-            width: 30%;
+            width: 70%;
             button {
-                width: 80%;
+                width: 100%;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
@@ -61,20 +65,172 @@
                 @include text($c0-light, $text-2xl ,$fw-semibold )
             }
             .drop-cont {
+
                 .card-body {
-                    border-radius: 0;
-                    min-height: auto;
-                    // position: absolute;
+                    border-radius: 0;           
                     a {
                         text-decoration: none;
                         @include text($c0-secondary, $text-base , $fw-regular );
                         line-height: 30px;
+                        border-bottom: solid $c1-secondary 1px;
+                        &:hover {
+                            color: $c0-dark;
+                            transition: all 0.5s;
+
+                        }
                     }
-                }
+                }   
             }
         }
         .slider-right {
-
+            color: #777;
         }
     }
   }
+.feature-product {
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .container {
+        display: flex ;
+        justify-content: space-between;
+        align-items: center;
+        img {
+            width: 60%;
+            height: 70%;
+            background-color: $bg1-light;
+        }
+        h2 {
+            @include text($c1-dark, $text-3xl , $fw-semibold );
+            text-align: center;
+            
+        }
+        .new-product {
+            margin-right: 20px;
+            .col {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                .row-fea {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    position: relative;
+                    padding: 15px;
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        background-color: $bg1-light;
+                        bottom: -5px;
+                        left: 0;
+                        width: 100%;
+                        height: 1px;
+    
+                    }
+                    .item-left {
+                        width: 40%;
+                    }
+                    .item-right {
+                        p {
+                            @include text($c1-dark, $text-base , $fw-regular );
+                            &:hover {
+                                color: $c0-danger;
+                                transition: all 0.5s;
+                            }
+                        }
+                        span {
+                            color: $c0-danger;
+                        }
+                        i {
+                            color: $c0-warning;
+                        }
+                    }
+                }
+            }
+
+        }
+        .fea-product {
+            margin-right: 20px;
+            .col {
+                .row-fea {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    position: relative;
+                    padding: 15px;
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        background-color: $bg1-light;
+                        bottom: -5px;
+                        left: 0;
+                        width: 100%;
+                        height: 1px;
+    
+                    }
+                    .item-left {
+                        width: 40%;
+                    }
+                    .item-right {
+                        p {
+                            @include text($c1-dark, $text-base , $fw-regular );
+                            &:hover {
+                                color: $c0-danger;
+                                transition: all 0.5s;
+                            }
+                        }
+                        span {
+                            color: $c0-danger;
+                        }
+                        i {
+                            color: $c0-warning;
+                        }
+                    }
+                }
+            }
+
+        }
+        .best-seller {
+            .col {
+                .row-fea {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    position: relative;
+                    padding: 15px;
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        background-color: $bg1-light;
+                        bottom: -5px;
+                        left: 0;
+                        width: 100%;
+                        height: 1px;
+    
+                    }
+                    .item-left {
+                        width: 40%;
+                    }
+                    .item-right {
+                        p {
+                            @include text($c1-dark, $text-base , $fw-regular );
+                            &:hover {
+                                color: $c0-danger;
+                                transition: all 0.5s;
+                            }
+                        }
+                        span {
+                            color: $c0-danger;
+                        }
+                        i {
+                            color: $c0-warning;
+                        }
+                    }
+                }
+            }
+
+        }
+}
+}

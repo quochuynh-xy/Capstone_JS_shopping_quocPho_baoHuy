@@ -171,9 +171,21 @@
   transition: all 0.5s;
 }
 .header .brand-name .container .icon .icon-2 i {
+  position: relative;
   color: #000;
   font-size: 20px;
   margin-right: 5px;
+}
+.header .brand-name .container .icon .icon-2 i::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: solid transparent 1px;
+  border-radius: 50%;
+  top: -90%;
+  right: -50%;
+  background-color: #d3122a;
 }
 .header .brand-name .container .icon .icon-2 span {
   color: #000;

@@ -14,6 +14,7 @@ $c0-dark: #000;
 $c0-light: #fff;
 $c1-light: #f7f8fa;
 $c0-danger: red;
+$c1-danger: #d3122a;
 $c0-secondary: #777;
 $c1-secondary: #ededed;
 // bg color
@@ -213,9 +214,21 @@ $fw-bold: 700;
             }
           }
           i {
+            position: relative;
             color: $c0-dark;
             font-size: $text-2xl;
             margin-right: 5px;
+            &::after {
+              content: "";
+              position: absolute;
+              width: 20px;
+              height: 20px;
+              border: solid transparent 1px;
+              border-radius: 50%;
+              top: -90%;
+              right: -50%;
+              background-color: $c1-danger;
+            }
           }
           span {
             color: $c0-dark;
