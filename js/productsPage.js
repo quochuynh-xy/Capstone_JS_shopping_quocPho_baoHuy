@@ -35,6 +35,7 @@ function handlQuantityChange(e, type, stock) {
   }
   // Sau khi cộng chán chê, kiểm tra lại số lượng.
   // Nếu > stock thì giới hạn là stock, nếu < 0 thì là 0
+  if (quantity > stock) alert("Mua gì dữ anh trai. Hết hàng rồi.");
   quantity > stock ? (quantity = stock) : quantity;
   quantity < 0 ? (quantity = 0) : quantity;
   // Đưa số lượng quantity vào ô input
@@ -118,6 +119,8 @@ function renderProduct(data) {
     </div>`;
   }
   document.getElementById("js-productsList").innerHTML = htmlContent;
+  // Gán chức năng mở modal
+  assignFeature();
 }
 // filterProduct: lọc sản phẩm
 document.getElementById("js-filterInput").onchange = filterProduct;
@@ -150,14 +153,17 @@ function filterProduct() {
 // handleAddToCart: thêm sản phẩm vào giỏ hàng
 function handleAddToCart(e, id) {
   // cart = [{product:{obj item}, quantity: 1-n}, {product:{obj item}, quantity: 1-n}]
-  // cartItem = { product:{obj item}, count: 1-n}
+  // cartItem = { product:{obj item}, count: 1-n, inStock: n}
   var cartItem = {};
   var cartIndex = -1;
   // Lấy số lượng hàng
   var take =
     e.target.parentElement.parentElement.querySelector(".js-count").value * 1;
+  // Ngăn ngừa các cháu thêm số lượng < 0
+  if (!take) return;
   axios({ url: apiURL + `/${id}`, method: "GET" })
     .then(function (response) {
+      console.log(apiURL + `/${id}`);
       cartItem.product = response.data;
       // Kiểm tra sự tồn tại của sản phẩm trong giỏ hàng.
       for (let i = 0; i < cart.length; i++) {
@@ -166,10 +172,17 @@ function handleAddToCart(e, id) {
       // Nếu có tồn tại thì cộng dồn số lượng muốn mua.
       if (cartIndex != -1) {
         cart[cartIndex].quantity += take; // số lượng items chọn mua
+        // // Nếu số lượng hàng mua nhiều hơn inStock thì chỉ cho tối đa == inStock.
+        if (cart[cartIndex].quantity >= cart[cartIndex].inStock) {
+          cart[cartIndex].quantity = cart[cartIndex].inStock;
+        }
       } else {
         // Nếu không có thì bỏ sản phẩm mới và số lượng muốn mua vào obj cartItem, rồi bỏ vào mảng giỏ hàng.
         cartItem.product = response.data;
-        cartItem.quantity = take;
+        cartItem.inStock = response.data.stock;
+        take >= response.data.stock
+          ? (cartItem.quantity = response.data.stock)
+          : (cartItem.quantity = take);
         cart.push(cartItem);
       }
       // Lưu mảng giỏ hàng xuống local.
@@ -182,14 +195,27 @@ function handleAddToCart(e, id) {
 }
 // render giỏ hàng
 function handleRenderCart() {
-  if (cart.length == 0) return;
+  if (cart.length == 0) {
+    document.querySelector(".js-total-bill").innerHTML = 0;
+    document.getElementById(
+      "listOfItems"
+    ).innerHTML = `<div class="text-center">
+    <p class="fs-4">Giỏ hàng đang trống</p>
+    <img
+      class="imgfluid w-25"
+      src="https://cdn4.iconfinder.com/data/icons/e-commerce-and-online-shopping-outline/512/cancel_basket_empty_delete_cart_store-256.png"
+      alt=""
+    />
+  </div>`;
+    return;
+  }
   let totalBill = 0;
   renderData = cart;
   let carthtml = "";
   for (let i = 0; i < renderData.length; i++) {
     totalBill += renderData[i].product.price * renderData[i].quantity;
     carthtml += `<section class="item__list">
-                    <span class="js-item-remove item__remove">Xóa</span>
+                    <span onclick="handleDeleteItemInCart(${i})" class="js-item-remove item__remove">Xóa</span>
                     <div class="item__img">
                       <img
                         src="${renderData[i].product.img}"
@@ -204,11 +230,11 @@ function handleRenderCart() {
                       <div class="item__count">
                         <p>Số lượng:</p>
                         <div class="item-control">
-                          <span class="js-item-minus ctrl-btn fw-bold">-</span>
-                          <span class=""><input class="item-quantity fw-bolder text-center" type="text" value="${
-                            renderData[i].quantity
-                          }"></span>
-                          <span class="js-item-plus ctrl-btn fw-bold">+</span>
+                          <span onclick="handleItemControl(event, 'minus', ${i})" class="js-item-minus ctrl-btn fw-bold">-</span>
+                          <span class=""><input onchange = "handleChange(event, ${i})" class="js-item-quantity item-quantity fw-bolder text-center" type="text" value="${
+      renderData[i].quantity
+    }"></span>
+                          <span onclick="handleItemControl(event, 'plus', ${i})" class="js-item-plus ctrl-btn fw-bold">+</span>
                         </div>
                       </div>
                       <p class="item__sum-price">Thành tiền:<span>${
@@ -220,6 +246,51 @@ function handleRenderCart() {
   }
   document.getElementById("listOfItems").innerHTML = carthtml;
   document.querySelector(".js-total-bill").innerHTML = totalBill;
+}
+// xử lý từng Item trong giỏ hàng:
+function handleItemControl(e, type, index) {
+  let itemCount = e.target.parentElement.querySelector(".js-item-quantity");
+  if (!itemCount.value) {
+    cart.splice(index, 1);
+    saveCartDataToLocal();
+    return handleRenderCart();
+  }
+  if (type == "minus") {
+    cart[index].quantity -= 1;
+    cart[index].quantity == 0
+      ? cart.splice(index, 1)
+      : (itemCount.value = cart[index].quantity);
+  }
+  if (type == "plus") {
+    cart[index].quantity += 1;
+    cart[index].quantity >= cart[index].inStock
+      ? (cart[index].quantity = cart[index].inStock)
+      : (itemCount.value = cart[index].quantity);
+  }
+  handleRenderCart();
+  saveCartDataToLocal();
+}
+// trường hợp người dùng tự nhập giá trị cho ô input ở giỏ hàng
+function handleChange(e, index) {
+  let buy = e.target.value * 1;
+  if (!buy) {
+    cart.splice(index, 1);
+    saveCartDataToLocal();
+    return handleRenderCart();
+  }
+  if (cart[index].inStock >= buy && buy > 0) {
+    cart[index].quantity = buy;
+  } else if (cart[index].inStock < buy && buy > 0) {
+    cart[index].quantity = cart[index].inStock;
+  }
+  saveCartDataToLocal();
+  handleRenderCart();
+}
+// Xóa luôn item trong giỏ hàng.
+function handleDeleteItemInCart(index) {
+  cart.splice(index, 1);
+  saveCartDataToLocal();
+  handleRenderCart();
 }
 // Gán chức năng cho tất cả các hàm sau khi load giao diện
 function assignFeature() {
@@ -249,12 +320,17 @@ function handleModal() {
 var cartOpen = document.querySelector(
   ".header .brand-name .container .icon .icon-2"
 );
-var cartCheckout = document.querySelector(".cart");
 var cartCheckoutCloseBtn = document.querySelector(".js-close-cart");
+var cartBackground = document.querySelector(".js-cart-outer");
+var cartCheckout = document.querySelector(".cart");
 function handleCart() {
   cartCheckout.classList.toggle("active");
+  cartBackground.classList.toggle("show");
 }
 cartCheckoutCloseBtn.addEventListener("click", handleCart);
+cartBackground.addEventListener("click", function (e) {
+  handleCart();
+});
 cartOpen.addEventListener("click", () => {
   handleCart();
   handleRenderCart();
