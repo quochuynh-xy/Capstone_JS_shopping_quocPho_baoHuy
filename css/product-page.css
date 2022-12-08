@@ -360,6 +360,7 @@ body {
 .cart.active {
   transform: translateX(0%);
   animation: slideInRight ease-out 0.75s;
+  width: 30vw;
 }
 .cart__header {
   position: relative;
