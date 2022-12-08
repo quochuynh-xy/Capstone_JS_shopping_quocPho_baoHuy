@@ -349,7 +349,7 @@ body {
   top: 0;
   right: 0;
   bottom: 0;
-  max-width: 30vw;
+  width: 30vw;
   padding: 1rem 1rem 1rem 2rem;
   border-left: #3333333a solid 2px;
   box-shadow: 0px 0px 0px 2px #e1f815bf;
@@ -404,6 +404,20 @@ body {
   padding-bottom: 0.75rem;
   margin-bottom: 0.75rem;
   border-bottom: 1px solid #77777780;
+  position: relative;
+}
+.cart .cart__body .item__remove {
+  content: 'Xóa';
+  position: absolute;
+  right: 0;
+  top: -4px;
+  color: #d81818;
+  background-color: #fff;
+  padding: 0px 2px 0 8px;
+  cursor: pointer;
+}
+.cart .cart__body .item__remove:hover {
+  text-decoration: underline;
 }
 .cart .cart__body .item__list:last-of-type {
   border-bottom: none;
@@ -432,12 +446,36 @@ body {
 .cart .item__info .item__sum-price {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   color: #333;
 }
 .cart .item__info .item__count span,
 .cart .item__info .item__price span,
 .cart .item__info .item__sum-price span {
   color: #dd4e3f;
+}
+.cart .item__info .item__count .item-control {
+  display: flex;
+}
+.cart .item__info .item__count .item-control .item-quantity {
+  width: 2.5rem;
+  color: #dd4e3f ;
+}
+.cart .item__info .item__count .item-control .ctrl-btn {
+  padding:0 0.5rem ;
+  border: #333 solid 1px;
+  cursor: pointer;
+  transition: 0.4s;
+  color: #0f0f0d;
+  user-select: none;
+}
+.cart .item__info .item__count .item-control .ctrl-btn:hover {
+  background-color: #ee4d2d;
+  border: #ee4d2d solid 1px;
+  color: #fff;
+}
+.cart .item__info .item__count .item-control .ctrl-btn:active {
+  opacity: 0.5;
 }
 .cart .cart__footer {
   padding-top: 1rem;
