@@ -4,6 +4,20 @@ var apiURL =
 var productsList = [];
 // cart: chứa các sản phẩm trong giỏ hàng.
 var cart = [];
+function getCartDataFromLocal() {
+  //Lấy dữ liệu giỏ hàng lưu ở local
+  let getData = localStorage.getItem("cyber-Cart");
+  if (!getData) return;
+  cart = JSON.parse(getData);
+}
+function saveCartDataToLocal() {
+  let jsonData = JSON.stringify(cart);
+  localStorage.setItem("cyber-Cart", jsonData);
+}
+window.onload = function () {
+  fetchProductsData();
+  getCartDataFromLocal();
+};
 // Hàm thay đổi số lượng sản phẩm
 function handlQuantityChange(e, type) {
   // parent của thẻ input, chứa các nút nhấn và nút tăng giảm số lượng sp
@@ -85,7 +99,7 @@ function renderProduct(data) {
                 <input
                 class="px-1 text-center js-count"
                 type="number"
-                value="0"
+                value="1"
                 />
                 <button
                 onclick="handlQuantityChange(event,'plus')"
@@ -95,7 +109,7 @@ function renderProduct(data) {
                 </button>
             </div>
             <div class="cart__add">
-                <button class="add__btn px-2">Thêm vào giỏ</button>
+                <button onclick="handleAddToCart(event, ${data[i].id})" class="js-add-btn add__btn px-2">Thêm vào giỏ</button>
             </div>
             </div>
         </div>
@@ -132,12 +146,85 @@ function filterProduct() {
       console.log(error);
     });
 }
-
-// Modal
-var openModal = document.querySelectorAll(".item .item__info__name");
-for (let i = 0; i < openModal.length; i++) {
-  openModal[i].addEventListener("click", handleModal);
+// handleAddToCart: thêm sản phẩm vào giỏ hàng
+function handleAddToCart(e, id) {
+  // cart = [{product:{obj item}, quantity: 1-n}, {product:{obj item}, quantity: 1-n}]
+  // cartItem = { product:{obj item}, count: 1-n}
+  var cartItem = {};
+  var cartIndex = -1;
+  // Lấy số lượng hàng
+  var take =
+    e.target.parentElement.parentElement.querySelector(".js-count").value * 1;
+  axios({ url: apiURL + `/${id}`, method: "GET" })
+    .then(function (response) {
+      cartItem.product = response.data;
+      // Kiểm tra sự tồn tại của sản phẩm trong giỏ hàng.
+      for (let i = 0; i < cart.length; i++) {
+        if (cart[i].product["id"] == id) cartIndex = i;
+      }
+      // Nếu có tồn tại thì cộng dồn số lượng muốn mua.
+      if (cartIndex != -1) {
+        cart[cartIndex].quantity += take; // số lượng items chọn mua
+      } else {
+        // Nếu không có thì bỏ sản phẩm mới và số lượng muốn mua vào obj cartItem, rồi bỏ vào mảng giỏ hàng.
+        cartItem.product = response.data;
+        cartItem.quantity = take;
+        cart.push(cartItem);
+      }
+      // Lưu mảng giỏ hàng xuống local.
+      saveCartDataToLocal();
+      console.log(cart);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 }
+// render giỏ hàng
+function handleRenderCart() {
+  if (cart.length == 0) return;
+  let totalBill = 0;
+  renderData = cart;
+  let carthtml = "";
+  for (let i = 0; i < renderData.length; i++) {
+    totalBill += renderData[i].product.price * renderData[i].quantity;
+    carthtml += `<section class="item__list">
+                    <div class="item__img">
+                      <img
+                        src="${renderData[i].product.img}"
+                        alt="Item img"
+                      />
+                    </div>
+                    <div class="item__info">
+                      <h4 class="item__name">${renderData[i].product.name}</h4>
+                      <p class="item__count">Số lượng:<span>${
+                        renderData[i].quantity
+                      }</span></p>
+                      <p class="item__price">Đơn giá:<span>${
+                        renderData[i].product.price
+                      }</span></p>
+                      <p class="item__sum-price">Thành tiền:<span>${
+                        renderData[i].product.price * renderData[i].quantity
+                      }</span></p>
+                    </div>
+                  </section>`;
+  }
+  document.getElementById("listOfItems").innerHTML = carthtml;
+  document.querySelector(".js-total-bill").innerHTML = totalBill;
+}
+// Gán chức năng cho tất cả các hàm sau khi load giao diện
+function assignFeature() {
+  // Gán chức năng cho nút thêm vào giỏ hàng cho tất cả các nút
+  var addBtns = document.querySelectorAll(".js-add-btn");
+  for (let i = 0; i < addBtns.length; i++) {
+    addBtns[i].addEventListener("click", handleAddToCart);
+  }
+  // Gán chức năng mở modal cho tất cả các items
+  var openModal = document.querySelectorAll(".item .item__info__name");
+  for (let i = 0; i < openModal.length; i++) {
+    openModal[i].addEventListener("click", handleModal);
+  }
+}
+// Modal
 var iconClose = document.querySelector(".modal__content .closeModal");
 var modal = document.querySelector(".itemModal");
 iconClose.addEventListener("click", handleModal);
@@ -148,3 +235,15 @@ function handleModal() {
   document.querySelector(".itemModal").classList.toggle("active");
   document.querySelector("body").classList.toggle("hide");
 }
+// Cart
+var cartOpen = document.querySelector('.header .brand-name .container .icon .icon-2');
+var cartCheckout = document.querySelector(".cart");
+var cartCheckoutCloseBtn = document.querySelector('.js-close-cart');
+function handleCart() {
+  cartCheckout.classList.toggle("active")
+}
+cartCheckoutCloseBtn.addEventListener("click", handleCart);
+cartOpen.addEventListener("click", ()=> {
+  handleCart();
+  handleRenderCart();
+})
