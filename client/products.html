@@ -198,6 +198,7 @@
               name=""
               id="js-filterInput"
             >
+              <option value="">Tất cả</option>
               <option value="samsung">Samsung</option>
               <option value="iphone">Iphone</option>
             </select>
@@ -400,7 +401,7 @@
                   <input
                     class="px-1 text-center js-count"
                     type="number"
-                    value="0"
+                    value="1"
                   />
                   <button
                     onclick="handlQuantityChange(event,'plus')"
@@ -410,7 +411,7 @@
                   </button>
                 </div>
                 <div class="cart__add">
-                  <button class="add__btn px-2">Thêm vào giỏ</button>
+                  <button class="js-add-btn add__btn px-2">Thêm vào giỏ</button>
                 </div>
               </div>
             </div>
@@ -420,6 +421,50 @@
       </div>
     </section>
     <!-- FOOTER -->
+    <!-- SHOPPING CART -->
+    <section class="cart">
+      <header class="cart__header">
+        <span>Giỏ hàng</span>
+        <i class="js-close-cart fa-solid fa-xmark"></i>
+      </header>
+      <main class="cart__body">
+        <div class="item" id="listOfItems">
+          <!-- one item -->
+          <!-- <section class="item__list">
+            <div class="item__img">
+              <img
+                src="https://cdn.tgdd.vn/Products/Images/42/235838/Galaxy-S22-Ultra-Burgundy-600x600.jpg"
+                alt="Item img"
+              />
+            </div>
+            <div class="item__info">
+              <h4 class="item__name">Iphone 12 pro-Max</h4>
+              <p class="item__count">Số lượng:<span>1</span></p>
+              <p class="item__price">Đơn giá:<span>12.000.000đ</span></p>
+              <p class="item__sum-price">Thành tiền:<span>12.000.000đ</span></p>
+            </div>
+          </section> -->
+          <!-- one item -->
+          <div class="text-center">
+            <p class="fs-4">Giỏ hàng đang trống</p>
+            <img class="imgfluid w-25"
+              src="https://cdn4.iconfinder.com/data/icons/e-commerce-and-online-shopping-outline/512/cancel_basket_empty_delete_cart_store-256.png"
+              alt=""
+            />
+          </div>
+        </div>
+      </main>
+      <footer class="cart__footer">
+        <div class="cash">
+          <p class="cash__txt">Tổng tiền:</p>
+          <p class="js-total-bill cash__total">0<span>đ</span></p>
+        </div>
+        <div class="cart-btn">
+          <button class="cart__order">Thanh toán</button>
+          <button class="cart__clear">Xóa tất cả</button>
+        </div>
+      </footer>
+    </section>
     <!-- MODAL -->
     <section class="itemModal align-items-center">
       <div class="modal__content w-75 mx-auto row justify-content-center">
