@@ -277,7 +277,7 @@ body {
   max-height: 80vh;
   position: relative;
   box-sizing: content-box;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 }
 .modal__content img {
   animation: showModal 1s linear;
@@ -293,6 +293,20 @@ body {
 }
 .modal__content .closeModal:hover {
   color: #dd4e3f;
+}
+.modal__content__detail {
+  overflow: hidden;
+  max-height: 80vh;
+  margin-bottom: 1rem;
+  overflow-y: scroll;
+}
+.modal__content__detail::-webkit-scrollbar {
+  width: 5px;
+  /* background-color: green; */
+}
+.modal__content__detail::-webkit-scrollbar-thumb {
+  background-color: #0f0f0d;
+  border-radius: 40%;
 }
 .modal__content__detail .modal__deltail__name {
   color: #696969;
