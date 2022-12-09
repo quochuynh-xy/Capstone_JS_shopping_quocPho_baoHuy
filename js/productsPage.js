@@ -84,7 +84,7 @@ function renderProduct(data) {
         </div>
         </div>
         <div class="item__info">
-        <h1 class="item__info__name">${data[i].name}</h1>
+        <h1 onclick="handleRenderModal(${data[i].id})" class="item__info__name">${data[i].name}</h1>
         <p class="item__info__price">${data[i].price} <span>đ</span></p>
         <div class="item__info__cart">
             <p class="my-0">
@@ -111,7 +111,7 @@ function renderProduct(data) {
                 </button>
             </div>
             <div class="cart__add">
-                <button onclick="handleAddToCart(event, ${data[i].id})" class="js-add-btn add__btn px-2">Thêm vào giỏ</button>
+                <button onclick="handleAddToCart(event,${data[i].id})" class="js-add-btn add__btn px-2">Thêm vào giỏ</button>
             </div>
             </div>
         </div>
@@ -163,7 +163,6 @@ function handleAddToCart(e, id) {
   if (!take) return;
   axios({ url: apiURL + `/${id}`, method: "GET" })
     .then(function (response) {
-      console.log(apiURL + `/${id}`);
       cartItem.product = response.data;
       // Kiểm tra sự tồn tại của sản phẩm trong giỏ hàng.
       for (let i = 0; i < cart.length; i++) {
@@ -294,11 +293,6 @@ function handleDeleteItemInCart(index) {
 }
 // Gán chức năng cho tất cả các hàm sau khi load giao diện
 function assignFeature() {
-  // Gán chức năng cho nút thêm vào giỏ hàng cho tất cả các nút
-  var addBtns = document.querySelectorAll(".js-add-btn");
-  for (let i = 0; i < addBtns.length; i++) {
-    addBtns[i].addEventListener("click", handleAddToCart);
-  }
   // Gán chức năng mở modal cho tất cả các items
   var openModal = document.querySelectorAll(".item .item__info__name");
   for (let i = 0; i < openModal.length; i++) {
@@ -315,6 +309,66 @@ modal.addEventListener("click", function (e) {
 function handleModal() {
   document.querySelector(".itemModal").classList.toggle("active");
   document.querySelector("body").classList.toggle("hide");
+}
+// render nội dung trong modal
+function handleRenderModal(id) {
+  document.getElementById("itemModal").innerHTML ='';
+  let promise = axios({ url: apiURL + `/${id}`, method: "GET" });
+  promise
+    .then(function (response) {
+      var data = response.data;
+      document.getElementById("itemModal").innerHTML = `
+    <div class="modal__content w-75 mx-auto row justify-content-center">
+      <p><i class="closeModal fa-regular fa-circle-xmark"></i></p>
+      <div class="modal__content__img col-5">
+        <img
+          class="d-block w-100 mx-0 rounded-3"
+          src="${data.img}"
+          alt="image"
+        />
+        <p class="mt-2 text-center fs-4 text-warning">
+          <span class="fs-5">Hiện có:</span> ${data.stock} <span class="fs-5">sp</span>
+        </p>
+      </div>
+      <div class="modal__content__detail col-7">
+        <div class="mb-4">
+          <h1 class="modal__deltail__name">${data.name}</h1>
+          <p class="modal__deltail__price">${data.price}</p>
+          <p class="mb-1 fs-4 text-decoration-underline">Thông tin chi tiết:</p>
+          <div class="modal__deltail__des">
+            <ul class="px-0">
+              <li>Tên sản phẩm: <span>${data.name}</span></li>
+              <li>Kích thước màn hình: <span>${data.screen} inch.</span></li>
+              <li>Độ phân giải camera trước: <span>${data.frontCamera}  Megapixel.</span></li>
+              <li>Độ phân giải camera sau: <span>${data.backCamera} Megapixel.</span></li>
+              <li>Hãng sản xuất: <span>${data.type}.</span></li>
+              <li>Chi tiết sản phẩm:</li>
+              <li>
+                <i>
+                ${data.desc}</i
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <footer class="modal__footer">
+        <h3>SOCIAL SHARE</h3>
+        <div class="modal__footer__social">
+          <a href="#url" class="bg-fb fa-brands fa-facebook-f"></a>
+          <a href="#url" class="bg-tw fa-brands fa-twitter"></a>
+          <a href="#url" class="bg-gg fa-brands fa-google-plus-g"></a>
+        </div>
+      </footer>
+    </div>
+    `;
+      document
+        .querySelector(".modal__content .closeModal")
+        .addEventListener("click", handleModal);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 }
 // Cart
 var cartOpen = document.querySelector(
