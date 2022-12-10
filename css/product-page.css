@@ -17,6 +17,9 @@
 .hide {
   overflow: hidden;
 }
+.header .icon {
+  cursor: pointer;
+}
 /* Color options */
 .color-1 {
   background-color: #a92015;
@@ -120,23 +123,26 @@ body {
   text-decoration: underline;
 }
 .products__items .item .item__info__cart {
-  background-color: #ee4d2d;
+  background-color: #fff;
   padding: 8px 0;
   border-radius: 12px;
   cursor: pointer;
-  color: #fff;
-  font-size: 1.2rem;
+  color: rgb(27, 27, 22);
+  font-size: 1.5rem;
   transition: 0.3s;
   position: relative;
   overflow: hidden;
+  border: 1px solid #333333;
 }
 .products__items .item .item__info__cart:hover {
   /* background-color: #fecc11; */
   /* color: #fff; */
   background-color: transparent;
+  border: 1px solid transparent;
 }
 .products .products__items .item {
   margin-bottom: 2rem;
+  animation: showModal 0.75s linear;
 }
 .products__items .item .item__info__cart:hover p {
   opacity: 0;

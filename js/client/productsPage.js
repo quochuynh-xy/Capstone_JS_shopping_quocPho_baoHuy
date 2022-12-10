@@ -61,7 +61,7 @@ function fetchProductsData() {
 function renderProduct(data) {
   let htmlContent = "";
   for (let i = 0; i < data.length; i++) {
-    htmlContent += `<div class="col-xl-4 item">
+    htmlContent += `<div class="col-4 item">
         <div class="item__detail text-center">
         <img
             class="w-75 d-block mx-auto rounded-3"
@@ -291,6 +291,12 @@ function handleDeleteItemInCart(index) {
   saveCartDataToLocal();
   handleRenderCart();
 }
+// Xóa hết tát cả item trong giỏ hàng.
+function handleEmptyCart () {
+  cart =[];
+  localStorage.setItem('cyber-Cart', cart);
+  handleRenderCart()
+}
 // Gán chức năng cho tất cả các hàm sau khi load giao diện
 function assignFeature() {
   // Gán chức năng mở modal cho tất cả các items
@@ -312,7 +318,7 @@ function handleModal() {
 }
 // render nội dung trong modal
 function handleRenderModal(id) {
-  document.getElementById("itemModal").innerHTML ='';
+  document.getElementById("itemModal").innerHTML = "";
   let promise = axios({ url: apiURL + `/${id}`, method: "GET" });
   promise
     .then(function (response) {
@@ -388,4 +394,9 @@ cartBackground.addEventListener("click", function (e) {
 cartOpen.addEventListener("click", () => {
   handleCart();
   handleRenderCart();
+});
+document.querySelector('.cart-btn .cart__order').addEventListener("click", function () {
+  handleCart()
+  if(!cart.length) return
+  open("../client/checkout.html")
 });

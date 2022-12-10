@@ -7,7 +7,7 @@
     <title>Product</title>
     <link
       rel="icon"
-      href="https://cdn1.iconfinder.com/data/icons/essentials-pack/96/code_coding_html_css_programming-256.png"
+      href="https://cdn4.iconfinder.com/data/icons/game-ui-set-3/96/Game_shop_red-256.png"
     />
     <!-- Font-awesome -->
     <link
@@ -36,10 +36,6 @@
     <!-- Page css -->
     <link rel="stylesheet" href="../css/product-page.css" />
   </head>
-  <!-- Class list
-  primary-color
-  secondary-color
- -->
   <body>
     <!-- HEADER -->
     <header class="header">
@@ -209,7 +205,7 @@
     <!-- Body -->
     <section class="products container row px-0 justify-content-between">
       <!-- Left- menu bar -->
-      <div class="products__options col-xl-3">
+      <div class="products__options d-none d-xl-block col-xl-3">
         <div class="options__list">
           <h5
             class="primary-color fw-normal"
@@ -361,7 +357,7 @@
         class="products__items col-12 col-xl-9 row px-0"
       >
         <!-- one item -->
-        <div class="col-xl-4 item">
+        <!-- <div class="col-xl-4 item">
           <div class="item__detail text-center">
             <img
               class="d-block w-75 mx-auto rounded-3"
@@ -416,7 +412,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <!-- one item -->
       </div>
     </section>
@@ -470,7 +466,7 @@
         </div>
         <div class="cart-btn">
           <button class="cart__order">Thanh toán</button>
-          <button class="cart__clear">Xóa tất cả</button>
+          <button onclick="handleEmptyCart()" class="cart__clear">Xóa tất cả</button>
         </div>
       </footer>
     </section>
@@ -546,6 +542,6 @@
       referrerpolicy="no-referrer"
     ></script>
     <!-- main page JS -->
-    <script src="../js/productsPage.js"></script>
+    <script src="../js/client/productsPage.js"></script>
   </body>
 </html>
