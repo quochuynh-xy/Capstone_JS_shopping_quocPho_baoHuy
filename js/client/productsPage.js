@@ -35,7 +35,7 @@ function handlQuantityChange(e, type, stock) {
   }
   // Sau khi cộng chán chê, kiểm tra lại số lượng.
   // Nếu > stock thì giới hạn là stock, nếu < 0 thì là 0
-  if (quantity > stock) alert("Mua gì dữ anh trai. Hết hàng rồi.");
+  if (quantity > stock) alertMess("Vượt quá số lượng hàng hiện có");
   quantity > stock ? (quantity = stock) : quantity;
   quantity < 0 ? (quantity = 0) : quantity;
   // Đưa số lượng quantity vào ô input
@@ -65,6 +65,7 @@ function renderProduct(data) {
         <div class="item__detail text-center">
         <img
             class="w-75 d-block mx-auto rounded-3"
+            onerror="this.src='./img/error1-img.jpg'"
             src="${data[i].img}"
             alt="phone"
         />
@@ -186,6 +187,7 @@ function handleAddToCart(e, id) {
       }
       // Lưu mảng giỏ hàng xuống local.
       saveCartDataToLocal();
+      arlertNotify();
       console.log(cart);
     })
     .catch(function (error) {
@@ -194,6 +196,7 @@ function handleAddToCart(e, id) {
 }
 // render giỏ hàng
 function handleRenderCart() {
+  getCartDataFromLocal();
   if (cart.length == 0) {
     document.querySelector(".js-total-bill").innerHTML = 0;
     document.getElementById(
@@ -260,14 +263,23 @@ function handleItemControl(e, type, index) {
       ? cart.splice(index, 1)
       : (itemCount.value = cart[index].quantity);
   }
+  // if (type == "plus") {
+  //   cart[index].quantity += 1;
+  //   cart[index].quantity >= cart[index].inStock
+  //     ? (cart[index].quantity = cart[index].inStock)
+  //     : (itemCount.value = cart[index].quantity);
+  // }
   if (type == "plus") {
     cart[index].quantity += 1;
-    cart[index].quantity >= cart[index].inStock
-      ? (cart[index].quantity = cart[index].inStock)
-      : (itemCount.value = cart[index].quantity);
+    if (cart[index].quantity >= cart[index].inStock) {
+      cart[index].quantity = cart[index].inStock;
+      alertMess("Vượt quá số lượng hiện có");
+    } else {
+      itemCount.value = cart[index].quantity;
+    }
   }
-  handleRenderCart();
   saveCartDataToLocal();
+  handleRenderCart();
 }
 // trường hợp người dùng tự nhập giá trị cho ô input ở giỏ hàng
 function handleChange(e, index) {
@@ -291,11 +303,26 @@ function handleDeleteItemInCart(index) {
   saveCartDataToLocal();
   handleRenderCart();
 }
-// Xóa hết tát cả item trong giỏ hàng.
-function handleEmptyCart () {
-  cart =[];
-  localStorage.setItem('cyber-Cart', cart);
-  handleRenderCart()
+// Xóa hết tất cả items trong giỏ hàng.
+function handleEmptyCart() {
+  cart = [];
+  localStorage.setItem("cyber-Cart", cart);
+  handleRenderCart();
+}
+// arlert khi mua quá số lượng instock
+function alertMess(data) {
+  // data = "Vượt quá giới hạn số lượng";
+  // data = "Đã thêm sản phẩm vào giỏ hàng";
+  Swal.fire(data);
+}
+function arlertNotify() {
+  Swal.fire({
+    position: "center",
+    icon: "success",
+    title: "Đã thêm sản phẩm vào giỏ",
+    showConfirmButton: false,
+    timer: 1500,
+  });
 }
 // Gán chức năng cho tất cả các hàm sau khi load giao diện
 function assignFeature() {
@@ -380,23 +407,22 @@ function handleRenderModal(id) {
 var cartOpen = document.querySelector(
   ".header .brand-name .container .icon .icon-2"
 );
-var cartCheckoutCloseBtn = document.querySelector(".js-close-cart");
-var cartBackground = document.querySelector(".js-cart-outer");
-var cartCheckout = document.querySelector(".cart");
+var cartCheckoutCloseBtn = document.querySelector(".js-close-cart"); // icon close
+var cartBackground = document.querySelector(".js-cart-outer"); // cart modal bg
+var cartCheckout = document.querySelector(".cart"); //cart display inner
+var checkoutBtn = document.getElementById("moveToCheckout"); // nút checkout
 function handleCart() {
   cartCheckout.classList.toggle("active");
   cartBackground.classList.toggle("show");
 }
 cartCheckoutCloseBtn.addEventListener("click", handleCart);
-cartBackground.addEventListener("click", function (e) {
-  handleCart();
+cartBackground.addEventListener("click", handleCart);
+cartOpen.addEventListener("click", function () {
+    handleCart();
+    handleRenderCart();
 });
-cartOpen.addEventListener("click", () => {
+checkoutBtn.addEventListener("click", function () {
   handleCart();
-  handleRenderCart();
-});
-document.querySelector('.cart-btn .cart__order').addEventListener("click", function () {
-  handleCart()
-  if(!cart.length) return
-  open("../client/checkout.html")
+  if (!cart.length) return;
+  open("../client/checkout.html");
 });
