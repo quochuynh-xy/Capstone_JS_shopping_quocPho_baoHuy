@@ -43,7 +43,9 @@
   height: 90%;
 }
 .navigation .container .navbar {
-  background-color: #777;
+  max-height: 400px;
+  max-width: 80%;
+  background-color: #f7f8fa;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -64,24 +66,26 @@
 .navigation .container .navbar .nav-hover:hover::before {
   content: "";
   position: absolute;
-  background-color: #777;
+  background-color: #f7f8fa;
   width: 50px;
   height: 50px;
   border-radius: 50%;
   top: -50px;
   right: 0;
   box-shadow: 35px 35px 0 10px #fff;
+  transition: all 0.5s;
 }
 .navigation .container .navbar .nav-hover:hover::after {
   content: "";
   position: absolute;
-  background-color: #777;
+  background-color: #f7f8fa;
   width: 50px;
   height: 50px;
   border-radius: 50%;
   bottom: -50px;
   right: 0;
   box-shadow: 35px -35px 0 10px #fff;
+  transition: all 0.5s;
 }
 .navigation .container .navbar .row-1 {
   width: 90%;
@@ -151,4 +155,19 @@
 .navigation .container .content-admin .item-list table tr {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1.5fr 1fr 1fr;
+}
+.navigation .container .content-admin .item-list table td {
+  height: 100%;
+}
+.navigation .container .content-admin .item-list table .table-body th {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.navigation .container .content-admin .item-list table .table-body td {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }

@@ -17,5 +17,5 @@ function Products(
       (this.img = _img),
       (this.desc = _desc),
       (this.type = _type);
-      (thi.stock = _stock)
+      (this.stock = _stock)
   }

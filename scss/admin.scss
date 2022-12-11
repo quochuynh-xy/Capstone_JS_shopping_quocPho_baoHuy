@@ -77,7 +77,9 @@
         gap: 40px;
         height: 90%;
         .navbar {
-            background-color: $bg0-secondary;
+            max-height: 400px;
+            max-width: 80%;
+            background-color: $bg1-light;
             display: flex;
             flex-direction: column;
             position: relative;
@@ -96,24 +98,26 @@
                 &:hover::before {
                     content: "";
                     position: absolute;
-                    background-color: $bg0-secondary;
+                    background-color: $bg1-light;
                     width: 50px;
                     height: 50px;
                     border-radius: 50%;
                     top: -50px;
                     right: 0;
                     box-shadow: 35px 35px 0 10px #fff;
+                    transition: all 0.5s;
                 }
                 &:hover::after {
                     content: "";
                     position: absolute;
-                    background-color: $bg0-secondary;
+                    background-color: $bg1-light;
                     width: 50px;
                     height: 50px;
                     border-radius: 50%;
                     bottom: -50px;
                     right: 0;
                     box-shadow: 35px -35px 0 10px #fff;
+                    transition: all 0.5s;
                 }
             }
             .row-1 {
@@ -187,10 +191,29 @@
                     tr {
                         display: grid;
                         grid-template-columns: 1fr 1fr 1fr 1.5fr 1fr 1fr;
-                    }        
+                    }
+                    td {
+                        height: 100%;
+                    } 
+                    .table-body {
+                        th {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            flex-direction: column;
+                        }
+                        td {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            flex-direction: column;
+                        }
+                    }
+                     
                }
             }
         }
 
     }
+
 }

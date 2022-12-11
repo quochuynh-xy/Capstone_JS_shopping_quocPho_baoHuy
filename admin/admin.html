@@ -104,7 +104,7 @@
     <!-- Navigation -->
     <section class="navigation">
       <div class="container">
-        <div class="navbar">
+        <div class="navbar" id="nav">
           <div class="row-1 nav-hover">
             <span>
               <i class="fa-regular fa-circle-user"></i>
@@ -134,6 +134,7 @@
                   data-bs-toggle="modal"
                   data-bs-target="#exampleModal"
                   data-bs-whatever="@mdo"
+
                 >
                   Add Item <i class="fa-solid fa-plus"></i>
                 </button>
@@ -160,7 +161,7 @@
                         ></button>
                       </div>
                       <div class="modal-body">
-                        <form>
+                        <form id="form-cont">
                           <div class="mb-3">
                             <label for="recipient-name" class="col-form-label"
                               >Name:</label
@@ -168,11 +169,11 @@
                             <input
                               type="text"
                               class="form-control"
-                              id="recipient-name"
                               placeholder="Enter name"
                               id="itemName"
                             />
                           </div>
+                          <div id="nameError" class="fst-italic text-danger"></div>
                           <div class="mb-3">
                             <label for="recipient-name" class="col-form-label"
                               >Price:</label
@@ -180,11 +181,47 @@
                             <input
                               type="text"
                               class="form-control"
-                              id="recipient-name"
-                              placeholder="Enter price"
+                              placeholder="Enter screen value"
                               id="itemPrice"
                             />
                           </div>
+                          <div id="priceError" class="fst-italic text-danger"></div>
+                          <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label"
+                              >Screen:</label
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              placeholder="Enter resolution"
+                              id="itemScreen"
+                            />
+                          </div>
+                          <div id="screenError" class="fst-italic text-danger"></div>
+                          <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label"
+                              >Back-camera:</label
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              placeholder="Enter resolution "
+                              id="itemBackCam"
+                            />
+                          </div>
+                          <div id="backCamError" class="fst-italic text-danger"></div>
+                          <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label"
+                              >Front-camera:</label
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              placeholder="Enter resolution"
+                              id="itemFontCam"
+                            />
+                          </div>
+                          <div id="frontCamError" class="fst-italic text-danger"></div>
                           <div class="mb-3">
                             <label for="recipient-name" class="col-form-label"
                               >Image:</label
@@ -192,33 +229,72 @@
                             <input
                               type="text"
                               class="form-control"
-                              id="recipient-name"
                               placeholder="Enter image"
-                              itemid="itemImg"
+                              id="itemImg"
                             />
                           </div>
+                          <div id="imgError" class="fst-italic text-danger"></div>
                           <div class="mb-3">
                             <label for="message-text" class="col-form-label"
                               >Description:</label
                             >
                             <textarea
                               class="form-control"
-                              id="message-text"
                               placeholder="Enter Description"
                               id="itemDes"
                             ></textarea>
                           </div>
+                          <div id="descError" class="fst-italic text-danger"></div>
+                          <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label"
+                              >Type:</label
+                            >
+                            <select
+                              style="
+                                display: block;
+                                padding: 10px;
+                                width: 100%;
+                                border: 1px solid #ced4da;
+                                border-radius: 0.375rem;
+                                color: gray;
+                              "
+                              id="itemType"
+                            >
+                              <option value="iphone">Iphone</option>
+                              <option value="samsung">Samsung</option>
+                            </select>
+                          </div>
+                          <div id="typeError"></div>
+                          <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label"
+                              >Stock:</label
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              placeholder="Enter stock"
+                              id="itemStock"
+                            />
+                          </div>
+                          <div id="stockError" class="fst-italic text-danger"></div>
                         </form>
                       </div>
-                      <div class="modal-footer">
+                      <div class="modal-footer" id="btnGroup">
                         <button
                           type="button"
                           class="btn btn-secondary"
                           data-bs-dismiss="modal"
+                          id="btnClose"
                         >
                           Close
                         </button>
-                        <button type="button" class="btn btn-primary">
+                        <button
+                          type="button"
+                          class="btn btn-primary"
+                          
+                          id="btnCreate"
+                          onclick="checkMode()"
+                        >
                           Add item
                         </button>
                       </div>
@@ -229,7 +305,7 @@
             </div>
             <div class="search-form">
               <form action="">
-                <input type="search" id="search" placeholder="Enter keyword" />
+                <input type="search" oninput="searchProduct(event)" id="search" placeholder="Enter keyword" />
                 <i class="fa-solid fa-magnifying-glass"></i>
               </form>
             </div>
@@ -246,18 +322,7 @@
                   <th>Action</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <th>1</th>
-                  <td>Iphone</td>
-                  <td>100$</td>
-                  <td colspan="2">
-                    <img src="../image/product2.png" alt="" />
-                  </td>
-                  <td>description</td>
-                  <td></td>
-                </tr>
-              </tbody>
+              <tbody id="table-cont" class="table-body"></tbody>
             </table>
           </div>
         </div>
@@ -276,6 +341,10 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <!-- Sweer alert -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Product obj -->
+    <script src="../js/src/products.js"></script>
     <!-- Admin js -->
     <script src="../js/model/admin.js"></script>
   </body>
