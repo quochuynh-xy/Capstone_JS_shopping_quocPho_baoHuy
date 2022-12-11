@@ -96,6 +96,11 @@
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
 }
+.navigation .container .navbar .row-1 button {
+  border: solid transparent 1px;
+  background-color: #f7f8fa;
+  border-radius: 10px;
+}
 .navigation .container .navbar .row-2 {
   position: relative;
   width: 90%;
@@ -106,6 +111,11 @@
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
 }
+.navigation .container .navbar .row-2 button {
+  border: solid transparent 1px;
+  background-color: #f7f8fa;
+  border-radius: 10px;
+}
 .navigation .container .navbar .row-3 {
   width: 90%;
   position: absolute;
@@ -114,6 +124,11 @@
   padding: 20px;
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
+}
+.navigation .container .navbar .row-3 button {
+  border: solid transparent 1px;
+  background-color: #f7f8fa;
+  border-radius: 10px;
 }
 .navigation .container .content-admin {
   width: 100%;

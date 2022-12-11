@@ -128,6 +128,11 @@
                 padding: 15px;
                 border-top-left-radius: 30px;
                 border-bottom-left-radius: 30px;
+                button {
+                    border: solid transparent 1px;
+                    background-color: $bg1-light;
+                    border-radius: 10px;
+                }
             }
             .row-2 {
                 position: relative;
@@ -138,7 +143,11 @@
                 padding: 20px;
                 border-top-left-radius: 30px;
                 border-bottom-left-radius: 30px;
-                
+                button {
+                    border: solid transparent 1px;
+                    background-color: $bg1-light;
+                    border-radius: 10px;
+                }
             }
             .row-3 {
                 width: 90%;
@@ -148,6 +157,11 @@
                 padding: 20px;
                 border-top-left-radius: 30px;
                 border-bottom-left-radius: 30px;
+                button {
+                    border: solid transparent 1px;
+                    background-color: $bg1-light;
+                    border-radius: 10px;
+                }
             }
         }
         .content-admin {
