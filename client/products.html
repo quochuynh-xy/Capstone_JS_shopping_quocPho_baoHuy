@@ -31,6 +31,8 @@
       href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,900;1,300;1,400;1,500;1,600;1,700;1,900&display=swap"
       rel="stylesheet"
     />
+    <!-- Sweet alert -->
+    <link rel="stylesheet" href="sweetalert2.min.css" />
     <!-- Main css -->
     <link rel="stylesheet" href="../css/main.css" />
     <!-- Page css -->
@@ -465,8 +467,10 @@
           <p class="js-total-bill cash__total">0<span>đ</span></p>
         </div>
         <div class="cart-btn">
-          <button class="cart__order">Thanh toán</button>
-          <button onclick="handleEmptyCart()" class="cart__clear">Xóa tất cả</button>
+          <button id="moveToCheckout" class="cart__order">Thanh toán</button>
+          <button onclick="handleEmptyCart()" class="cart__clear">
+            Xóa tất cả
+          </button>
         </div>
       </footer>
     </section>
@@ -541,6 +545,8 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <!-- sweet alert -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- main page JS -->
     <script src="../js/client/productsPage.js"></script>
   </body>
