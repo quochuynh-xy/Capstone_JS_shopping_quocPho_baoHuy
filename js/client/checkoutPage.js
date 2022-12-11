@@ -4,7 +4,7 @@ window.onload = function () {
 function clearCart() {
   localStorage.setItem("cyber-Cart", JSON.stringify([]));
   sweetarlert()
-  setTimeout(close, 5000)
+  setTimeout(close, 4000)
 }
 function sweetarlert() {
   Swal.fire({
