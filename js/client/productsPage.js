@@ -241,13 +241,13 @@ function handleRenderCart() {
                       </div>
                       <p class="item__sum-price">Thành tiền:<span>${
                         renderData[i].product.price * renderData[i].quantity
-                      }đ</span></p>
+                      } đ</span></p>
                     </div>
                   </section>
                   `;
   }
   document.getElementById("listOfItems").innerHTML = carthtml;
-  document.querySelector(".js-total-bill").innerHTML = totalBill;
+  document.querySelector(".js-total-bill").innerHTML = totalBill+" đ";
 }
 // xử lý từng Item trong giỏ hàng:
 function handleItemControl(e, type, index) {
@@ -366,7 +366,7 @@ function handleRenderModal(id) {
       <div class="modal__content__detail col-7">
         <div class="mb-4">
           <h1 class="modal__deltail__name">${data.name}</h1>
-          <p class="modal__deltail__price">${data.price}</p>
+          <p class="modal__deltail__price">Giá: ${data.price}đ</p>
           <p class="mb-1 fs-4 text-decoration-underline">Thông tin chi tiết:</p>
           <div class="modal__deltail__des">
             <ul class="px-0">
