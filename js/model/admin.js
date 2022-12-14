@@ -5,9 +5,8 @@ function checkMode() {
   if (mode === "create") createProduct();
   if (mode === "update") updateProduct();
 }
-
 function createProduct() {
-  if (!validateForm()) return
+  // if (!validateForm()) return;
   mode = "create";
   var name = document.getElementById("itemName").value;
   var price = document.getElementById("itemPrice").value;
@@ -44,10 +43,7 @@ function createProduct() {
     });
   document.getElementById("form-cont").reset();
 }
-// function saveLocal() {
-//   var itemListJSON = JSON.stringify(itemList);
-//   localStorage.setItem("item", itemListJSON);
-// }
+
 function mapData(local) {
   var mappedData = [];
   for (var i = 0; i < local.length; i++) {
@@ -84,7 +80,9 @@ function renderHtml(data) {
                 <button onclick="getUpdate('${data[i].id}')" class="btn btn-info mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-regular fa-pen-to-square" ></i>
                 </button>
                 <button class="btn btn-danger" onclick="deleteProduct('${data[i].id}')"><i class="fa-regular fa-trash-can"></i></button>
+                <button type="button" class="btn btn-success mt-2" ><i class="fa-solid fa-circle-info"></i></button>
                 </td>
+                
                 </tr> `;
   }
   document.getElementById("table-cont").innerHTML = html;
@@ -136,48 +134,48 @@ function deleteProduct(id) {
     }
   });
 }
-
 function getUpdate(id) {
   axios({
     url:
       "https://6388b326a4bb27a7f78f1ccc.mockapi.io/api/BC38_API/products/" + id,
     method: "GET",
-  })
-    .then(function (res) {
-      var item = res.data;
-      document.getElementById("itemName").value = item.name;
-      document.getElementById("itemPrice").value = item.price;
-      document.getElementById("itemScreen").value = item.screen;
-      document.getElementById("itemBackCam").value = item.backCamera;
-      document.getElementById("itemFontCam").value = item.frontCamera;
-      document.getElementById("itemImg").value = item.img;
-      document.getElementById("itemDes").value = item.desc;
-      document.getElementById("itemType").value = item.type;
-      document.getElementById("itemStock").value = item.stock;
+  }).then(function (res) {
+    var item = res.data;
+    document.getElementById("itemName").value = item.name;
+    document.getElementById("itemPrice").value = item.price;
+    document.getElementById("itemScreen").value = item.screen;
+    document.getElementById("itemBackCam").value = item.backCamera;
+    document.getElementById("itemFontCam").value = item.frontCamera;
+    document.getElementById("itemImg").value = item.img;
+    document.getElementById("itemDes").value = item.desc;
+    document.getElementById("itemType").value = item.type;
+    document.getElementById("itemStock").value = item.stock;
 
-      mode = "update";
+    document.getElementById("btnClose").style.display = "none";
+    document.getElementById("btnCreate").style.display = "none";
+   
 
-      document.getElementById("btnClose").style.display = "none";
-      document.getElementById("btnCreate").innerHTML = "Updated";
-      document.getElementById("btnCreate").classList.remove("btn-primary");
-      document.getElementById("btnCreate").classList.add("btn-warning");
-
-      // add cancle btn
-      if (document.getElementById("btnCancel")) return;
-      var btnCancel = document.createElement("button");
-      btnCancel.innerHTML = "Cancel update";
-      btnCancel.id = "btnCancel";
-      btnCancel.classList.add("btn", "btn-danger");
-      btnCancel.onclick = cancelUpdate;
-      document.getElementById("btnGroup").appendChild(btnCancel);
-    })
-    .catch(function (err) {
-      console.log(err);
-    });
+    mode = "update";
+    // btnUpdate
+    
+    var btnUpdate = document.createElement("button");
+    btnUpdate.innerHTML = " Update";
+    btnUpdate.id = "btnUpdate";
+    btnUpdate.classList.add("btn", "btn-warning");
+    document.getElementById("btnGroup").append(btnUpdate);
+    document.getElementById("btnUpdate").setAttribute('onclick', `updateProduct(${item.id})`)
+    
+    // btnCancel
+    if (document.getElementById("btnCancel")) return
+    var btnCancel = document.createElement("button");
+    btnCancel.innerHTML = "Cancel update";
+    btnCancel.id = "btnCancel";
+    btnCancel.classList.add("btn", "btn-danger");
+    btnCancel.onclick = cancelUpdate;
+    document.getElementById("btnGroup").appendChild(btnCancel);
+  });
 }
 function updateProduct(id) {
-  if (!validateForm ()) return
-  // DOM để lấy input thay đổi để gán vào obj mới -> call api để đưa data mới lên
   var name = document.getElementById("itemName").value;
   var price = document.getElementById("itemPrice").value;
   var screen = document.getElementById("itemScreen").value;
@@ -199,7 +197,7 @@ function updateProduct(id) {
     type,
     stock
   );
-
+  // productList.id = id
   axios({
     url:
       "https://6388b326a4bb27a7f78f1ccc.mockapi.io/api/BC38_API/products/" + id,
@@ -207,8 +205,9 @@ function updateProduct(id) {
     data: productList,
   })
     .then(function (res) {
-      alert("Updated success");
       fectchProduct(res);
+      alert("Update successfully");
+      cancelUpdate();
     })
     .catch(function (err) {
       console.log(err);
@@ -217,13 +216,16 @@ function updateProduct(id) {
 function cancelUpdate() {
   mode = "create";
   document.getElementById("btnClose").style.display = "block";
-  document.getElementById("btnCreate").innerHTML = "Add item";
+  document.getElementById("btnCreate").style.display = "block"
   document.getElementById("btnCreate").classList.remove("btn-warning");
   document.getElementById("btnCreate").classList.add("btn-primary");
+  document.getElementById("form-cont").reset();
+  var btnUpdate = document.getElementById("btnUpdate")
+  btnUpdate.remove()
   var btnCancel = document.getElementById("btnCancel");
   btnCancel.remove();
-  document.getElementById("form-cont").reset();
 }
+
 function searchProduct(e) {
   axios({
     url: "https://6388b326a4bb27a7f78f1ccc.mockapi.io/api/BC38_API/products",
@@ -239,6 +241,17 @@ function searchProduct(e) {
     }
     renderHtml(result);
   });
+}
+function showInfo (id){
+  axios ({
+    url : "https://6388b326a4bb27a7f78f1ccc.mockapi.io/api/BC38_API/products/" + id,
+    method : "GET", 
+  }).then(function(res){
+    var infoItem = res.data
+    document.getElementById("")
+    document.getElementById("")
+    document.getElementById("")
+  })
 }
 /**-- Validation -- */
 function required(val, config) {
@@ -273,7 +286,7 @@ function validateForm() {
   var screen = document.getElementById("itemScreen").value;
   var backCam = document.getElementById("itemBackCam").value;
   var frontCam = document.getElementById("itemFontCam").value;
-  var img = document.getElementById("itemImg").value
+  var img = document.getElementById("itemImg").value;
   var des = document.getElementById("itemDes").value;
   var type = document.getElementById("itemType").value;
   var stock = +document.getElementById("itemStock").value;
@@ -282,14 +295,14 @@ function validateForm() {
   var screenRegexp = /^\d[0-9]{0,9}\sinch$/g;
   var cameraRegexp = /^\d[0-9]{0,9}\sMP$/g;
   var stockRegexp = /[0-9]/g;
-  document.getElementById("nameError").style.display = "block"
-  document.getElementById("priceError").style.display = "block"
-  document.getElementById("screenError").style.display = "block"
-  document.getElementById("backCamError").style.display = "block"
-  document.getElementById("frontCamError").style.display = "block"
-  document.getElementById("descError").style.display = "block"
-  document.getElementById("typeError").style.display = "block"
-  document.getElementById("stockError").style.display = "block"
+  document.getElementById("nameError").style.display = "block";
+  document.getElementById("priceError").style.display = "block";
+  document.getElementById("screenError").style.display = "block";
+  document.getElementById("backCamError").style.display = "block";
+  document.getElementById("frontCamError").style.display = "block";
+  document.getElementById("descError").style.display = "block";
+  document.getElementById("typeError").style.display = "block";
+  document.getElementById("stockError").style.display = "block";
 
   var nameValid =
     required(name, { errorId: "nameError" }) &&
@@ -309,16 +322,15 @@ function validateForm() {
     pattern(backCam, { errorId: "backCamError", regexp: cameraRegexp });
 
   var frontCamValid =
-   required(frontCam, { errorId: "frontCamError" }) &&
-      pattern(frontCam, { errorId: "backCamError", regexp: cameraRegexp });
-  var imgValid = 
-  required (img , {errorId:"imgError"})
+    required(frontCam, { errorId: "frontCamError" }) &&
+    pattern(frontCam, { errorId: "backCamError", regexp: cameraRegexp });
+  var imgValid = required(img, { errorId: "imgError" });
   var desValid = required(des, { errorId: "descError" });
 
   var typeValid = required(type, { errorId: "typeError" });
 
-  var stockValid = 
-  required(stock, { errorId: "stockError" }) &&
+  var stockValid =
+    required(stock, { errorId: "stockError" }) &&
     pattern(stock, { errorId: "stockError", regexp: stockRegexp });
 
   var isFormValid =
@@ -332,5 +344,5 @@ function validateForm() {
     typeValid &&
     stockValid;
 
-    return isFormValid
+  return isFormValid;
 }
