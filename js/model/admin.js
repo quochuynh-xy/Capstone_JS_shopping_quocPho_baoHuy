@@ -85,7 +85,6 @@ function renderHtml(data) {
                 </tr> `;
   }
   document.getElementById("table-cont").innerHTML = html;
-  
 }
 
 function fectchProduct() {
@@ -157,7 +156,7 @@ function getUpdate(id) {
 
     mode = "update";
     // btnUpdate
-    if (document.getElementById("btnUpdate")) return
+    if (document.getElementById("btnUpdate")) return;
     var btnUpdate = document.createElement("button");
     btnUpdate.innerHTML = " Update";
     btnUpdate.id = "btnUpdate";
@@ -245,6 +244,7 @@ function searchProduct(e) {
   });
 }
 function showInfo(id) {
+  console.log("hello");
   axios({
     url:
       "https://6388b326a4bb27a7f78f1ccc.mockapi.io/api/BC38_API/products/" + id,
@@ -281,31 +281,32 @@ function showInfo(id) {
         </div>
       </div>
     </div> `;
-      handleModal();    
+      handleModal();
     })
     .catch(function (err) {
       console.log(err);
     });
 }
-function handleModal (){
-  let btnOpen = document.querySelectorAll(".open-modal-btn");
+function toggleModal() {
   let modal1 = document.querySelector(".modal1");
   let headerIconClose = document.querySelector(".modal1__header i");
   let btnClose = document.querySelector(".modal1__footer button");
-  function toggleModal() {
-    modal1.classList.toggle("hide");
+  modal1.classList.toggle("hide");
+  modal1.addEventListener("click", function (e) {
+    if (e.target == e.currentTarget) {
+      toggleModal();
+    }
+  });
+  headerIconClose.addEventListener("click", toggleModal);
+  btnClose.addEventListener("click", toggleModal);
+}
+function handleModal() {
+  let btnOpen = document.querySelectorAll(".open-modal-btn");
+ 
+  for (let i = 0; i < btnOpen[i].length; i++) {
+    btnOpen[i].addEventListener("click", toggleModal);
   }
-  for (let i = 0 ; i< btnOpen.length; i++){
-    btnOpen.addEventListener("click", toggleModal);
-    modal1.addEventListener("click", function (e) {
-      if (e.target == e.currentTarget) {
-        toggleModal();
-      }
-    });
-    headerIconClose.addEventListener("click", toggleModal);
-    btnClose.addEventListener("click", toggleModal)
-  }
-
+  toggleModal();
 }
 
 /**-- Validation -- */

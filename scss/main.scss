@@ -24,6 +24,7 @@ $bg1-dark: #333333;
 $bg2-dark: #222222;
 $bg1-light: #f7f8fa;
 $bg0-secondary: #777;
+$bg0-danger: red;
 // fs
 $text-base-1: 10px;
 $text-base: 15px;
@@ -203,6 +204,7 @@ $fw-bold: 700;
         }
         .icon-2 {
           cursor: pointer;
+          position: relative;
           &:hover {
             i {
               color: $c0-danger;
@@ -218,17 +220,17 @@ $fw-bold: 700;
             color: $c0-dark;
             font-size: $text-2xl;
             margin-right: 5px;
-            &::after {
-              content: "";
-              position: absolute;
-              width: 20px;
-              height: 20px;
-              border: solid transparent 1px;
-              border-radius: 50%;
-              top: -90%;
-              right: -50%;
-              background-color: $c1-danger;
-            }
+          }
+          .cart {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            top: 0;
+            left: 0;
+            background-color: $bg0-danger;
+            transform: translate(30%, -80%);
+
           }
           span {
             color: $c0-dark;

@@ -161,6 +161,7 @@
 }
 .header .brand-name .container .icon .icon-2 {
   cursor: pointer;
+  position: relative;
 }
 .header .brand-name .container .icon .icon-2:hover i {
   color: red;
@@ -176,16 +177,15 @@
   font-size: 20px;
   margin-right: 5px;
 }
-.header .brand-name .container .icon .icon-2 i::after {
-  content: "";
+.header .brand-name .container .icon .icon-2 .cart {
   position: absolute;
-  width: 20px;
-  height: 20px;
-  border: solid transparent 1px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
-  top: -90%;
-  right: -50%;
-  background-color: #d3122a;
+  top: 0;
+  left: 0;
+  background-color: red;
+  transform: translate(30%, -80%);
 }
 .header .brand-name .container .icon .icon-2 span {
   color: #000;
