@@ -9,6 +9,12 @@
     margin: 0 auto;
     padding: 0 15px;
   }
+
+  .container3x {
+    max-width: 30%;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
   // color
   $c0-dark: #000;
   $c1-dark: #243743;
@@ -25,6 +31,7 @@
   $bg2-dark: #222222;
   $bg1-light: #f7f8fa;
   $bg0-secondary: #777;
+  $bg-danger: red ;
   // fs
   $text-base: 15px;
   $text-2xl: 20px;
@@ -230,4 +237,108 @@
 
     }
 
+}
+
+.modal-info {
+    
+    button{
+        padding: 10px 20px;
+        border-radius: 10px;
+        border: solid transparent 1px;
+    }
+    .modal1{
+        background: rgba(0, 0, 0, 0.5);
+        position: fixed;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        .modal1__inner {
+            width: 30%;
+            position: relative;
+            margin: 0 auto;
+            top: 10%;
+            border-radius: 10px;
+            background-color: $bg0-light;
+            height: 80%;
+            padding: 15px;
+            animation-name: modalFade ;
+            animation-duration: 0.5s;
+            animation-delay: 0;
+            overflow: hidden;
+            .modal1__header {
+                margin-bottom: 10px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center; 
+                border-bottom: solid $c0-dark 1px;
+                padding: 10px;
+                span {
+
+                    @include text($c0-dark, $text-2xl,$fw-regular )
+                }
+                i {
+                    color: $c0-dark;
+                    background-color: $bg-danger;
+                    font-size: $text-base;
+                    border-radius: 10px;
+                    padding: 10px 15px;
+                    cursor: pointer;
+                }
+            }
+            .modal1__body {
+                
+                .body__top {
+                    display: grid;
+                    grid-template-columns: 1.5fr 1fr;
+                    gap: 10px;
+                    margin: 10px 0;
+                    .info-img {
+                        img {
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                    .info-cont {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        align-items: left;
+                        h1 {
+                            @include text($c0-dark, $text-3xl, $fw-semibold)
+                        }
+                        span {
+                            @include text($c0-danger, $text-base, $fw-semibold)
+                        }
+                        p {
+                            @include text($c0-secondary, $text-base, $fw-regular)
+                        }
+                    }
+                }
+                .body__bot {
+                    p {
+                        @include text($c0-dark, $text-base, $fw-regular)
+                    }
+                }
+            }
+            .modal1__footer {
+                position: absolute;
+                bottom: 5%;
+                right: 5%;
+                button{
+                    background-color: $bg0-secondary;
+                }
+            }
+        }
+    }
+}
+
+@keyframes modalFade {
+    from {
+        top: -100%;
+        opacity: 0;
+    }
+    to {
+        top: 10%;
+        opacity: 1;
+    }
 }

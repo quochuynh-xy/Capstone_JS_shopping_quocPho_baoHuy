@@ -66,7 +66,6 @@ function mapData(local) {
 }
 function renderHtml(data) {
   data = data || itemList;
-
   var html = "";
   for (var i = 0; i < data.length; i++) {
     data[i];
@@ -79,14 +78,16 @@ function renderHtml(data) {
                 <td >
                 <button onclick="getUpdate('${data[i].id}')" class="btn btn-info mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-regular fa-pen-to-square" ></i>
                 </button>
-                <button class="btn btn-danger" onclick="deleteProduct('${data[i].id}')"><i class="fa-regular fa-trash-can"></i></button>
-                <button type="button" class="btn btn-success mt-2" ><i class="fa-solid fa-circle-info"></i></button>
+                <button  class="btn btn-danger" onclick="deleteProduct('${data[i].id}')"><i class="fa-regular fa-trash-can"></i></button>
+                <button onclick="showInfo('${data[i].id}')" class="open-modal-btn p-2  btn btn-success
+                mt-2 rounded border border-0"><i class="fa-solid fa-circle-info fs-4"></i></button>
                 </td>
-                
                 </tr> `;
   }
   document.getElementById("table-cont").innerHTML = html;
+  
 }
+
 function fectchProduct() {
   itemList = [];
   renderHtml();
@@ -153,20 +154,21 @@ function getUpdate(id) {
 
     document.getElementById("btnClose").style.display = "none";
     document.getElementById("btnCreate").style.display = "none";
-   
 
     mode = "update";
     // btnUpdate
-    
+    if (document.getElementById("btnUpdate")) return
     var btnUpdate = document.createElement("button");
     btnUpdate.innerHTML = " Update";
     btnUpdate.id = "btnUpdate";
     btnUpdate.classList.add("btn", "btn-warning");
     document.getElementById("btnGroup").append(btnUpdate);
-    document.getElementById("btnUpdate").setAttribute('onclick', `updateProduct(${item.id})`)
-    
+    document
+      .getElementById("btnUpdate")
+      .setAttribute("onclick", `updateProduct(${item.id})`);
+
     // btnCancel
-    if (document.getElementById("btnCancel")) return
+    if (document.getElementById("btnCancel")) return;
     var btnCancel = document.createElement("button");
     btnCancel.innerHTML = "Cancel update";
     btnCancel.id = "btnCancel";
@@ -186,7 +188,7 @@ function updateProduct(id) {
   var type = document.getElementById("itemType").value;
   var stock = +document.getElementById("itemStock").value;
 
-  var productList = new Products(
+  var productUpdate = new Products(
     name,
     price,
     screen,
@@ -197,12 +199,12 @@ function updateProduct(id) {
     type,
     stock
   );
-  // productList.id = id
+
   axios({
     url:
       "https://6388b326a4bb27a7f78f1ccc.mockapi.io/api/BC38_API/products/" + id,
     method: "PUT",
-    data: productList,
+    data: productUpdate,
   })
     .then(function (res) {
       fectchProduct(res);
@@ -216,12 +218,12 @@ function updateProduct(id) {
 function cancelUpdate() {
   mode = "create";
   document.getElementById("btnClose").style.display = "block";
-  document.getElementById("btnCreate").style.display = "block"
+  document.getElementById("btnCreate").style.display = "block";
   document.getElementById("btnCreate").classList.remove("btn-warning");
   document.getElementById("btnCreate").classList.add("btn-primary");
   document.getElementById("form-cont").reset();
-  var btnUpdate = document.getElementById("btnUpdate")
-  btnUpdate.remove()
+  var btnUpdate = document.getElementById("btnUpdate");
+  btnUpdate.remove();
   var btnCancel = document.getElementById("btnCancel");
   btnCancel.remove();
 }
@@ -242,17 +244,70 @@ function searchProduct(e) {
     renderHtml(result);
   });
 }
-function showInfo (id){
-  axios ({
-    url : "https://6388b326a4bb27a7f78f1ccc.mockapi.io/api/BC38_API/products/" + id,
-    method : "GET", 
-  }).then(function(res){
-    var infoItem = res.data
-    document.getElementById("")
-    document.getElementById("")
-    document.getElementById("")
+function showInfo(id) {
+  axios({
+    url:
+      "https://6388b326a4bb27a7f78f1ccc.mockapi.io/api/BC38_API/products/" + id,
+    method: "GET",
   })
+    .then(function (res) {
+      let infoItem = res.data;
+      document.getElementById("modalDrop").innerHTML = `
+      <div class="modal1  hide" id="modalInfo">
+      <div class="modal1__inner ">
+        <div class="modal1__header">
+          <span>Item Infomation</span>
+          <i class="fa-solid fa-xmark icon-close "></i>
+        </div>
+        <div class="modal1__body">
+          <div class="body__top">
+            <div class="info-img">
+              <img src='${infoItem.img}' alt="" />
+            </div>
+            <div class="info-cont">
+              <h1 >'${infoItem.name}'</h1>
+              <span>'${infoItem.price}'</span>
+              <p>'${infoItem.stock}'</p>
+            </div>
+          </div>
+          <div class="body__bot">
+            <p>
+            '${infoItem.desc}'
+            </p>
+          </div>
+        </div>
+        <div class="modal1__footer">
+          <button>Close</button>
+        </div>
+      </div>
+    </div> `;
+      handleModal();    
+    })
+    .catch(function (err) {
+      console.log(err);
+    });
 }
+function handleModal (){
+  let btnOpen = document.querySelectorAll(".open-modal-btn");
+  let modal1 = document.querySelector(".modal1");
+  let headerIconClose = document.querySelector(".modal1__header i");
+  let btnClose = document.querySelector(".modal1__footer button");
+  function toggleModal() {
+    modal1.classList.toggle("hide");
+  }
+  for (let i = 0 ; i< btnOpen.length; i++){
+    btnOpen.addEventListener("click", toggleModal);
+    modal1.addEventListener("click", function (e) {
+      if (e.target == e.currentTarget) {
+        toggleModal();
+      }
+    });
+    headerIconClose.addEventListener("click", toggleModal);
+    btnClose.addEventListener("click", toggleModal)
+  }
+
+}
+
 /**-- Validation -- */
 function required(val, config) {
   if (val.length > 0) {

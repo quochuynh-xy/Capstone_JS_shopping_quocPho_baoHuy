@@ -11,6 +11,12 @@
   padding: 0 15px;
 }
 
+.container3x {
+  max-width: 30%;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
 .header .navbar {
   background-color: #222222 !important;
 }
@@ -185,4 +191,107 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.modal-info button {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: solid transparent 1px;
+}
+.modal-info .modal1 {
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+}
+.modal-info .modal1 .modal1__inner {
+  width: 30%;
+  position: relative;
+  margin: 0 auto;
+  top: 10%;
+  border-radius: 10px;
+  background-color: #fff;
+  height: 80%;
+  padding: 15px;
+  animation-name: modalFade;
+  animation-duration: 0.5s;
+  animation-delay: 0;
+  overflow: hidden;
+}
+.modal-info .modal1 .modal1__inner .modal1__header {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: solid #000 1px;
+  padding: 10px;
+}
+.modal-info .modal1 .modal1__inner .modal1__header span {
+  color: #000;
+  font-size: 20px;
+  font-weight: 400;
+}
+.modal-info .modal1 .modal1__inner .modal1__header i {
+  color: #000;
+  background-color: red;
+  font-size: 15px;
+  border-radius: 10px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+.modal-info .modal1 .modal1__inner .modal1__body .body__top {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 10px;
+  margin: 10px 0;
+}
+.modal-info .modal1 .modal1__inner .modal1__body .body__top .info-img img {
+  width: 100%;
+  height: 100%;
+}
+.modal-info .modal1 .modal1__inner .modal1__body .body__top .info-cont {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: left;
+}
+.modal-info .modal1 .modal1__inner .modal1__body .body__top .info-cont h1 {
+  color: #000;
+  font-size: 30px;
+  font-weight: 600;
+}
+.modal-info .modal1 .modal1__inner .modal1__body .body__top .info-cont span {
+  color: red;
+  font-size: 15px;
+  font-weight: 600;
+}
+.modal-info .modal1 .modal1__inner .modal1__body .body__top .info-cont p {
+  color: #777;
+  font-size: 15px;
+  font-weight: 400;
+}
+.modal-info .modal1 .modal1__inner .modal1__body .body__bot p {
+  color: #000;
+  font-size: 15px;
+  font-weight: 400;
+}
+.modal-info .modal1 .modal1__inner .modal1__footer {
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+}
+.modal-info .modal1 .modal1__inner .modal1__footer button {
+  background-color: #777;
+}
+
+@keyframes modalFade {
+  from {
+    top: -100%;
+    opacity: 0;
+  }
+  to {
+    top: 10%;
+    opacity: 1;
+  }
 }
