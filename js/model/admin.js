@@ -6,13 +6,13 @@ function checkMode() {
   if (mode === "update") updateProduct();
 }
 function createProduct() {
-  // if (!validateForm()) return;
+  if (!validateForm()) return;
   mode = "create";
   var name = document.getElementById("itemName").value;
-  var price = document.getElementById("itemPrice").value;
-  var screen = document.getElementById("itemScreen").value;
-  var backCam = document.getElementById("itemBackCam").value;
-  var frontCam = document.getElementById("itemFontCam").value;
+  var price = +document.getElementById("itemPrice").value;
+  var screen = +document.getElementById("itemScreen").value;
+  var backCam = +document.getElementById("itemBackCam").value;
+  var frontCam = +document.getElementById("itemFontCam").value;
   var img = document.getElementById("itemImg").value;
   var des = document.getElementById("itemDes").value;
   var type = document.getElementById("itemType").value;
@@ -172,11 +172,16 @@ function getUpdate(id) {
     btnCancel.innerHTML = "Cancel update";
     btnCancel.id = "btnCancel";
     btnCancel.classList.add("btn", "btn-danger");
+    let att = document.createAttribute("data-bs-dismiss");
+    att.value = "modal";
+    btnCancel.setAttribute(att);
     btnCancel.onclick = cancelUpdate;
     document.getElementById("btnGroup").appendChild(btnCancel);
   });
 }
 function updateProduct(id) {
+  if (!validateForm()) return;
+
   var name = document.getElementById("itemName").value;
   var price = document.getElementById("itemPrice").value;
   var screen = document.getElementById("itemScreen").value;
@@ -225,8 +230,27 @@ function cancelUpdate() {
   btnUpdate.remove();
   var btnCancel = document.getElementById("btnCancel");
   btnCancel.remove();
+  document.getElementById("nameError").style.display = "none";
+  document.getElementById("priceError").style.display = "none";
+  document.getElementById("screenError").style.display = "none";
+  document.getElementById("backCamError").style.display = "none";
+  document.getElementById("frontCamError").style.display = "none";
+  document.getElementById("descError").style.display = "none";
+  document.getElementById("typeError").style.display = "none";
+  document.getElementById("stockError").style.display = "none";
+  document.getElementById("imgError").style.display = "block";
 }
-
+function handleClose() {
+  document.getElementById("nameError").style.display = "none";
+  document.getElementById("priceError").style.display = "none";
+  document.getElementById("screenError").style.display = "none";
+  document.getElementById("backCamError").style.display = "none";
+  document.getElementById("frontCamError").style.display = "none";
+  document.getElementById("descError").style.display = "none";
+  document.getElementById("typeError").style.display = "none";
+  document.getElementById("stockError").style.display = "none";
+  document.getElementById("imgError").style.display = "none";
+}
 function searchProduct(e) {
   axios({
     url: "https://6388b326a4bb27a7f78f1ccc.mockapi.io/api/BC38_API/products",
@@ -235,8 +259,8 @@ function searchProduct(e) {
     var keyword = e.target.value.toLowerCase().trim();
     var result = [];
     for (var i = 0; i < res.data.length; i++) {
-      var itemName = res.data[i].name;
-      if (itemName.includes(keyword)) {
+      var itemType = res.data[i].type;
+      if (itemType.includes(keyword)) {
         result.push(res.data[i]);
       }
     }
@@ -244,7 +268,6 @@ function searchProduct(e) {
   });
 }
 function showInfo(id) {
-  console.log("hello");
   axios({
     url:
       "https://6388b326a4bb27a7f78f1ccc.mockapi.io/api/BC38_API/products/" + id,
@@ -265,9 +288,9 @@ function showInfo(id) {
               <img src='${infoItem.img}' alt="" />
             </div>
             <div class="info-cont">
-              <h1 >'${infoItem.name}'</h1>
-              <span>'${infoItem.price}'</span>
-              <p>'${infoItem.stock}'</p>
+              <h1 >${infoItem.name}</h1>
+              <span>Price: ${infoItem.price} VND</span>
+              <p>SL: ${infoItem.stock}</p>
             </div>
           </div>
           <div class="body__bot">
@@ -302,7 +325,7 @@ function toggleModal() {
 }
 function handleModal() {
   let btnOpen = document.querySelectorAll(".open-modal-btn");
- 
+
   for (let i = 0; i < btnOpen[i].length; i++) {
     btnOpen[i].addEventListener("click", toggleModal);
   }
@@ -345,7 +368,7 @@ function validateForm() {
   var img = document.getElementById("itemImg").value;
   var des = document.getElementById("itemDes").value;
   var type = document.getElementById("itemType").value;
-  var stock = +document.getElementById("itemStock").value;
+  var stock = document.getElementById("itemStock").value;
   var nameRegexp = /[A-z\s0-9]/g;
   var priceRegexp = /^\d{0,9}(\.\d{1,3})(\.\d{1,6})?VND/g;
   var screenRegexp = /^\d[0-9]{0,9}\sinch$/g;
@@ -359,6 +382,7 @@ function validateForm() {
   document.getElementById("descError").style.display = "block";
   document.getElementById("typeError").style.display = "block";
   document.getElementById("stockError").style.display = "block";
+  document.getElementById("imgError").style.display = "block";
 
   var nameValid =
     required(name, { errorId: "nameError" }) &&
@@ -366,20 +390,12 @@ function validateForm() {
 
   var priceValid =
     required(price, { errorId: "priceError" }) &&
-    length(price, { errorId: "priceError", min: 4, max: 15 }) &&
-    pattern(price, { errorId: "priceError", regexp: priceRegexp });
+    length(price, { errorId: "priceError", min: 4, max: 15 });
 
-  var screenValid =
-    required(screen, { errorId: "screenError" }) &&
-    pattern(screen, { errorId: "screenError", regexp: screenRegexp });
+  var screenValid = required(screen, { errorId: "screenError" });
 
-  var backCamValid =
-    required(backCam, { errorId: "backCamError" }) &&
-    pattern(backCam, { errorId: "backCamError", regexp: cameraRegexp });
-
-  var frontCamValid =
-    required(frontCam, { errorId: "frontCamError" }) &&
-    pattern(frontCam, { errorId: "backCamError", regexp: cameraRegexp });
+  var backCamValid = required(backCam, { errorId: "backCamError" });
+  var frontCamValid = required(frontCam, { errorId: "frontCamError" });
   var imgValid = required(img, { errorId: "imgError" });
   var desValid = required(des, { errorId: "descError" });
 
