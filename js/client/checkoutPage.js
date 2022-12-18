@@ -3,8 +3,7 @@ window.onload = function () {
 };
 function clearCart() {
   localStorage.setItem("cyber-Cart", JSON.stringify([]));
-  sweetarlert()
-  setTimeout(close, 4000)
+  sweetarlert();
 }
 function sweetarlert() {
   Swal.fire({
@@ -15,6 +14,10 @@ function sweetarlert() {
     imageHeight: 200,
     imageAlt: "Custom image",
   });
+  let backtoshop = () => {
+    open('../client/products.html', "_self");
+  }
+  setTimeout(backtoshop, 4000)
 }
 function handleRenderBill() {
   var data = JSON.parse(localStorage.getItem("cyber-Cart"));
