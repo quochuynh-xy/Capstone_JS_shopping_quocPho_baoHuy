@@ -274,12 +274,6 @@ function handleItemControl(e, type, index) {
       ? cart.splice(index, 1)
       : (itemCount.value = cart[index].quantity);
   }
-  // if (type == "plus") {
-  //   cart[index].quantity += 1;
-  //   cart[index].quantity >= cart[index].inStock
-  //     ? (cart[index].quantity = cart[index].inStock)
-  //     : (itemCount.value = cart[index].quantity);
-  // }
   if (type == "plus") {
     cart[index].quantity += 1;
     if (cart[index].quantity >= cart[index].inStock) {
@@ -339,14 +333,6 @@ function arlertNotify() {
     timer: 1500,
   });
 }
-// Gán chức năng cho tất cả các hàm sau khi load giao diện
-function assignFeature() {
-  // Gán chức năng mở modal cho tất cả các items
-  var openModal = document.querySelectorAll(".item .item__info__name");
-  for (let i = 0; i < openModal.length; i++) {
-    openModal[i].addEventListener("click", handleModal);
-  }
-}
 // Modal
 var iconClose = document.querySelector(".modal__content .closeModal");
 var modal = document.querySelector(".itemModal");
@@ -360,6 +346,7 @@ function handleModal() {
 }
 // render nội dung trong modal
 function handleRenderModal(id) {
+  handleModal();
   document.getElementById("itemModal").innerHTML = "";
   let promise = axios({ url: apiURL + `/${id}`, method: "GET" });
   promise
