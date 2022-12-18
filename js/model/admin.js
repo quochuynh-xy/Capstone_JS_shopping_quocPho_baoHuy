@@ -238,7 +238,7 @@ function cancelUpdate() {
   document.getElementById("descError").style.display = "none";
   document.getElementById("typeError").style.display = "none";
   document.getElementById("stockError").style.display = "none";
-  document.getElementById("imgError").style.display = "block";
+  document.getElementById("imgError").style.display = "none";
 }
 function handleClose() {
   document.getElementById("nameError").style.display = "none";
