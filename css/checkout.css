@@ -1,0 +1,221 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+* ol,
+* ul {
+  padding: 0px;
+}
+
+body {
+  font-family: "Work Sans", sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  padding: 0 15px;
+}
+
+.cart {
+  margin-top: 100px;
+  display: flex;
+}
+.cart .buyer {
+  width: 50%;
+  padding: 3rem;
+  width: 50%;
+  border-right: 1px solid #737373;
+}
+.cart .buyer .logo-brand {
+  font-size: 1.5rem;
+  color: #333;
+  text-decoration: none;
+}
+.cart .buyer .directory {
+  line-height: 1rem;
+}
+.cart .buyer .directory a {
+  color: #333;
+  font-size: calc(1rem + 4px);
+  font-size: 12px;
+  text-decoration: none;
+}
+.cart .buyer .directory i {
+  padding: 0 0.5rem;
+  font-size: 8px;
+}
+.cart .buyer .directory span {
+  color: #333;
+  font-size: calc(1rem + 4px);
+  font-size: 12px;
+  text-decoration: none;
+}
+.cart .buyer main .name {
+  font-size: 1.5rem;
+  margin-bottom: 0;
+}
+.cart .buyer main .login {
+  display: flex;
+  justify-content: space-between;
+}
+.cart .buyer main .login a {
+  text-decoration: none;
+}
+.cart .buyer main select {
+  width: 100%;
+  padding: 0.5rem 0.25rem;
+  border-radius: 5px;
+  display: inline-block;
+  color: #737373;
+}
+.cart .buyer main input {
+  padding: 0.35rem 0.5rem;
+  border-radius: 5px;
+  width: 100%;
+  color: #737373;
+  border: 1px solid #737373;
+}
+.cart .buyer main input:focus-visible {
+  outline: #737373 0.25px solid;
+}
+.cart .buyer main input.radio {
+  width: 1rem;
+  margin-right: 1rem;
+}
+.cart .buyer main .info b {
+  display: inline-block;
+  padding-bottom: 0.5rem;
+}
+.cart .buyer main .info p {
+  margin-bottom: 0.5rem;
+}
+.cart .items {
+  width: 50%;
+  padding: 3rem;
+}
+.cart .items .single-row {
+  display: flex;
+  border-bottom: rgba(115, 115, 115, 0.1450980392) 0.25px solid;
+  margin-top: 1rem;
+}
+.cart .items .single-row .img {
+  width: 15%;
+  border-radius: 0.5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border: 1px solid rgba(115, 115, 115, 0.5019607843);
+  border-radius: 4px;
+  height: fit-content;
+}
+.cart .items .single-row .img img {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0.5rem;
+}
+.cart .items .single-row .img span {
+  padding: 0 0.25rem;
+  background-color: #333;
+  color: #fff;
+  font-size: 12px;
+  min-width: 1rem;
+  text-align: center;
+  border-radius: 50%;
+  position: absolute;
+  top: -15%;
+  right: -15%;
+}
+.cart .items .single-row .item-detail {
+  width: 60%;
+  padding-left: 2rem;
+}
+.cart .items .single-row .item-detail .item-name h5 {
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+.cart .items .single-row .item-detail .brand h5 {
+  font-size: 1rem;
+  color: #737373;
+  margin-bottom: 0;
+}
+.cart .items .single-row .price {
+  width: 25%;
+}
+.cart .items .single-row .price h5 {
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+.cart .back {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid #737373;
+}
+.cart .back .mia {
+  flex: 1;
+}
+.cart .back i {
+  font-size: 1rem;
+}
+.cart .back a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  margin-left: 0.5rem;
+}
+.cart .back button {
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  background-color: #333;
+  color: #fff;
+  transition: 0.4s;
+}
+.cart .back button:hover {
+  background-color: #737373;
+}
+.cart .bill .caculate {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1rem;
+}
+.cart .bill .caculate ol {
+  padding-left: 1rem;
+}
+.cart .bill .caculate ol li {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.8;
+}
+.cart .bill .caculate ul {
+  padding-right: 1rem;
+}
+.cart .bill .caculate ul li {
+  text-align: end;
+  color: #ee4d2d;
+  list-style-type: none;
+  color: #ee4d2d;
+  line-height: 1.8;
+  font-weight: 600;
+}
+.cart .bill .total-count {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-top: 0.5px solid #737373;
+  border-bottom: 0.5px solid #737373;
+}
+.cart .bill .total-count .total-title {
+  font-size: 1.5rem;
+  margin-bottom: 0;
+  font-weight: 600;
+}
+.cart .bill .total-count .cash p {
+  font-size: 1.5rem;
+  margin-bottom: 0;
+}
