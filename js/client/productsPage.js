@@ -17,6 +17,7 @@ function saveCartDataToLocal() {
 window.onload = function () {
   fetchProductsData();
   getCartDataFromLocal();
+  sumTotalItems ()
 };
 // Hàm thay đổi số lượng sản phẩm
 function handlQuantityChange(e, type, stock) {
@@ -187,12 +188,22 @@ function handleAddToCart(e, id) {
       }
       // Lưu mảng giỏ hàng xuống local.
       saveCartDataToLocal();
+      // Hiển thị số lượng hàng trong giỏ.
+      sumTotalItems ()
       arlertNotify();
       console.log(cart);
     })
     .catch(function (error) {
       console.log(error);
     });
+}
+// Tổng số lượng hàng trong giỏ:
+function sumTotalItems () {
+  let sumItems = 0;
+  for(let i= 0; i < cart.length; i++) {
+    sumItems += cart[i].quantity;
+  }
+  document.getElementById('number-cart').innerHTML = sumItems;
 }
 // render giỏ hàng
 function handleRenderCart() {
@@ -279,6 +290,7 @@ function handleItemControl(e, type, index) {
     }
   }
   saveCartDataToLocal();
+  sumTotalItems ();
   handleRenderCart();
 }
 // trường hợp người dùng tự nhập giá trị cho ô input ở giỏ hàng
@@ -295,12 +307,14 @@ function handleChange(e, index) {
     cart[index].quantity = cart[index].inStock;
   }
   saveCartDataToLocal();
+  sumTotalItems ();
   handleRenderCart();
 }
 // Xóa luôn item trong giỏ hàng.
 function handleDeleteItemInCart(index) {
   cart.splice(index, 1);
   saveCartDataToLocal();
+  sumTotalItems ()
   handleRenderCart();
 }
 // Xóa hết tất cả items trong giỏ hàng.
@@ -308,6 +322,7 @@ function handleEmptyCart() {
   cart = [];
   localStorage.setItem("cyber-Cart", cart);
   handleRenderCart();
+  sumTotalItems ();
 }
 // arlert khi mua quá số lượng instock
 function alertMess(data) {
