@@ -439,5 +439,5 @@ cartOpen.addEventListener("click", function () {
 checkoutBtn.addEventListener("click", function () {
   handleCart();
   if (!cart.length) return;
-  open("../client/checkout.html");
+  open("../client/checkout.html",'_self');
 });
