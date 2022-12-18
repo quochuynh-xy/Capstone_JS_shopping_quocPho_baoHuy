@@ -16,6 +16,6 @@ function Products(
       (this.frontCamera = _frontCamera),
       (this.img = _img),
       (this.desc = _desc),
-      (this.type = _type);
+      (this.type = _type),
       (this.stock = _stock)
   }
