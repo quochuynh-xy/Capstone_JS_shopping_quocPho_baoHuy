@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout</title>
+    <link
+      rel="icon"
+      href="https://cdn4.iconfinder.com/data/icons/game-ui-set-3/96/Game_shop_red-256.png"
+    />
+    <!-- Sweet alert -->
+    <link rel="stylesheet" href="sweetalert2.min.css" />
+    <!-- Font-awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- CSS bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <!-- Google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,900;1,300;1,400;1,500;1,600;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Main css -->
+    <link rel="stylesheet" href="../css/main.css" />
+    <!-- Page css -->
+    <link rel="stylesheet" href="../css/checkout.css" />
+  </head>
+  <body>
+    <section class="cart container">
+      <div class="buyer">
+        <header>
+          <a class="logo-brand" href="./products.html">Astor</a>
+          <p class="directory">
+            <a href="#url">Giỏ hàng</a>
+            <i class="fa-solid fa-angle-right"></i>
+            <span>Thông tin</span>
+            <i class="fa-solid fa-angle-right"></i>
+            <span>Thanh toán</span>
+          </p>
+        </header>
+        <main>
+          <div class="mail">
+            <div>
+              <p class="name">Thông tin</p>
+              <p class="login">Đã có tài khoản? <a href="#url">Đăng nhập</a></p>
+            </div>
+          </div>
+          <p><input type="text" placeholder="caothaison@gmail.com" /></p>
+          <p>
+            <input class="radio" type="radio" />Nhận thông tin mới nhất từ
+            Astrozeneca
+          </p>
+          <div class="info">
+            <p>Thông tin thanh toán</p>
+            <p>
+              <b>Tỉnh/Thành phố</b>
+              <select name="" id="" value="">
+                <option value="Thành phố Hồ Chí Minh">
+                  Thành Phố Hồ Chí Minh
+                </option>
+              </select>
+            </p>
+            <div>
+              <b>Đường/Số nhà</b>
+              <p><input type="text" placeholder="Số 05 Lương Định Của" /></p>
+              <b>Xã/Phường</b>
+              <p><input type="text" placeholder="Phường Tân Thới" /></p>
+              <b>Quận/Huyện</b>
+              <p><input type="text" placeholder="Quận 12" /></p>
+              <b>Số điện thoại liên hệ</b>
+              <p><input type="number" value="" placeholder="0123-666-777" /></p>
+              <p>
+                <input class="radio" type="radio" /> Lưu thông tin cho đơn hàng
+                tiếp theo
+              </p>
+            </div>
+          </div>
+        </main>
+        <footer class="back">
+          <div class="mia">
+            <p>
+              <i class="fa-solid fa-chevron-left"></i>
+              <a href="../client/products.html">Quay lại</a>
+            </p>
+          </div>
+          <button onclick="clearCart()">Thanh toán</button>
+        </footer>
+      </div>
+      <div class="items">
+        <h3 class="mb-4">Chi tiết đơn hàng</h3>
+        <main id="billDetail">
+          <!-- one row -->
+          <!-- <div class="single-row">
+            <div class="img">
+              <img
+                src="https://cdn.tgdd.vn/Products/Images/42/250261/iphone-13-pro-max-xanh-la-thumb-600x600.jpg"
+                alt="iphone"
+              />
+              <span class="qty">100</span>
+            </div>
+            <div class="item-detail">
+              <div class="item-name">
+                <h5>Astro Iphone iphone-11</h5>
+              </div>
+              <div class="brand">
+                <h5>Đơn giá</h5>
+              </div>
+              <div>
+                <p>12000000 <span>đ</span></p>
+              </div>
+            </div>
+            <div class="price">
+              <h5>Thành Tiền</h5>
+              <p class="total text-danger">122.000.000 đ</p>
+            </div>
+          </div> -->
+          <!-- one row -->
+        </main>
+        <footer class="bill">
+          <div class="caculate">
+            <ol>
+              <li>Tạm tính:</li>
+              <li>Phí vận chuyển:</li>
+            </ol>
+            <ul>
+              <li id="cash">0 đ</li>
+              <li id="shipping">Miễn phí.</li>
+            </ul>
+          </div>
+          <div class="total-count">
+            <div class="txt">
+              <p class="total-title">Tổng tiền:</p>
+            </div>
+            <div class="cash">
+              <p id="totalCash">0 đ</p>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </section>
+    <!-- Checkout JS -->
+    <script src="../js/client/checkoutPage.js"></script>
+    <!-- sweet alert -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </body>
+</html>
