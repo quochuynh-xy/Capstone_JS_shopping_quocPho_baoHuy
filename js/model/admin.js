@@ -5,6 +5,9 @@ function checkMode() {
   if (mode === "create") createProduct();
   if (mode === "update") updateProduct();
 }
+function handleAdd (){
+  cancelUpdate()
+}
 function createProduct() {
   if (!validateForm()) return;
   mode = "create";
@@ -172,9 +175,6 @@ function getUpdate(id) {
     btnCancel.innerHTML = "Cancel update";
     btnCancel.id = "btnCancel";
     btnCancel.classList.add("btn", "btn-danger");
-    let att = document.createAttribute("data-bs-dismiss");
-    att.value = "modal";
-    btnCancel.setAttribute(att);
     btnCancel.onclick = cancelUpdate;
     document.getElementById("btnGroup").appendChild(btnCancel);
   });
