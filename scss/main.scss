@@ -1,0 +1,447 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Work Sans", sans-serif;
+}
+.container {
+  max-width: 1280;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+// color
+$c0-dark: #000;
+$c0-light: #fff;
+$c1-light: #f7f8fa;
+$c0-danger: red;
+$c1-danger: #d3122a;
+$c0-secondary: #777;
+$c1-secondary: #ededed;
+// bg color
+$bg0-light: #fff;
+$bg0-dark: #000;
+$bg1-dark: #333333;
+$bg2-dark: #222222;
+$bg1-light: #f7f8fa;
+$bg0-secondary: #777;
+$bg0-danger: red;
+// fs
+$text-base-1: 10px;
+$text-base: 15px;
+$text-2xl: 20px;
+$text-3xl: 30px;
+$text-4xl: 40px;
+$text-5xl: 50px;
+$text-6xl: 60px;
+$text-7xl: 70px;
+//fw
+$fw-light: 200;
+$fw-regular: 400;
+$fw-semibold: 600;
+$fw-bold: 700;
+// variable
+@mixin text($c, $fs, $fw) {
+  color: $c;
+  font-size: $fs;
+  font-weight: $fw;
+}
+.header {
+  .top-cont {
+    background-color: $bg2-dark;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .cont-left {
+        position: relative;
+        display: flex;
+        .cont-hover {
+          &:hover {
+            ul {
+              transform: translate(-30px, 25px);
+              visibility: visible;
+              transition: all 0.5s;
+            }
+          }
+          span {
+            color: $c0-light;
+            font-size: $text-base;
+            font-weight: $fw-regular;
+            margin-right: 10px;
+            display: inline-block;
+          }
+          i {
+            color: $c0-light;
+            font-size: $text-base;
+            margin-left: 5px;
+          }
+          ul {
+            visibility: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: translate(-30px, 35px);
+            width: 80%;
+            z-index: 100;
+            li {
+              color: $c0-secondary;
+              list-style: none;
+              font-size: $text-base;
+              font-weight: $fw-regular;
+              padding: 5px;
+              background-color: $bg0-light;
+              &:hover {
+                cursor: pointer;
+                transform: translateX(5px);
+                transition: all 0.5s;
+              }
+            }
+          }
+        }
+        span {
+          color: $bg0-light;
+          font-size: $text-base;
+          font-weight: $fw-regular;
+        }
+        a {
+          text-decoration: none;
+          color: $c0-light;
+          font-size: $text-base;
+          font-weight: $fw-regular;
+        }
+      }
+      .cont-right {
+        a {
+          text-decoration: none;
+          color: $c0-light;
+          font-size: $text-base;
+          font-weight: $fw-regular;
+          &:hover {
+            color: $c0-danger;
+            transition: all 0.5s;
+          }
+        }
+        span {
+          color: $c0-light;
+          font-size: $text-base;
+          font-weight: $fw-regular;
+        }
+      }
+    }
+  }
+}
+.header {
+  .brand-name {
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .logo {
+        a {
+          text-decoration: none;
+          color: $c0-dark;
+          font-size: $text-7xl;
+          font-weight: $fw-bold;
+        }
+      }
+      .search {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        input {
+          &:focus {
+            outline: 0;
+            border: solid $c0-secondary 1px;
+          }
+          width: 300px;
+          height: 30px;
+          padding: 20px 10px;
+          border-radius: 10px;
+          border: solid $c1-secondary 1px;
+          background-color: $bg1-light;
+        }
+        i {
+          font-size: $text-base;
+          color: $c0-secondary;
+          position: absolute;
+          top: 30%;
+          right: 5%;
+        }
+      }
+      .icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .icon-1 {
+          margin-right: 20px;
+          cursor: pointer;
+          &:hover {
+            i {
+              color: $c0-danger;
+              transition: all 0.5s;
+            }
+            span {
+              color: $c0-danger;
+              transition: all 0.5s;
+            }
+          }
+          i {
+            color: $c0-dark;
+            font-size: $text-2xl;
+            margin-right: 5px;
+          }
+          span {
+            color: $c0-dark;
+            font-size: $text-base;
+          }
+        }
+        .icon-2 {
+          cursor: pointer;
+          position: relative;
+          &:hover {
+            i {
+              color: $c0-danger;
+              transition: all 0.5s;
+            }
+            span {
+              color: $c0-danger;
+              transition: all 0.5s;
+            }
+          }
+          i {
+            position: relative;
+            color: $c0-dark;
+            font-size: $text-2xl;
+            margin-right: 5px;
+          }
+          .header-cart {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            top: 0;
+            left: 0;
+            background-color: $bg0-danger;
+            transform: translate(30%, -80%);
+
+          }
+          span {
+            color: $c0-dark;
+            font-size: $text-base;
+          }
+        }
+      }
+    }
+  }
+}
+.header {
+  .nav {
+    background-color: $bg1-dark;
+    height: 80px;
+    a {
+      text-decoration: none;
+      display: block;
+    }
+    .container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .nav-1 {
+        height: 100%;
+        width: 10%;
+        align-items: center;
+        display: flex;
+        a {
+          @include text($c0-light, $text-base, $fw-regular);
+        }
+        .nav-1__item {
+          z-index: 100;
+          visibility: hidden;
+          position: absolute;
+          background-color: $bg0-light;
+          width: 250px;
+          height: 150px;
+          padding: 10px 25px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          bottom: 0;
+          transform: translate(0%, 110%);
+          a {
+            position: relative;
+            line-height: 40px;
+            @include text($c0-secondary, $text-base, $fw-regular);
+            &:hover {
+              color: $c0-dark;
+              transition: all 0.5s;
+            }
+            &:hover::before {
+              content: "";
+              background-color: $bg0-dark;
+              position: absolute;
+              width: 100%;
+              height: 1px;
+              bottom: 0;
+              left: 0;
+              transition: all 0.5s;
+            }
+          }
+        }
+        &:hover {
+          .nav-1__item {
+            transform: translate(0%, 100%);
+            transition: all 0.5s;
+            visibility: visible;
+          }
+        }
+      }
+      .nav-2 {
+        width: 10%;
+        height: 100%;
+        align-items: center;
+        display: flex;
+        a {
+          @include text($c0-light, $text-base, $fw-regular);
+        }
+        .nav-2__item {
+          z-index: 100;
+          display: flex;
+          background-color: $bg0-light;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+          padding: 10px 20px;
+          justify-content: center;
+          align-items: center;
+          visibility: hidden;
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          transform: translate(-50%, 10%);
+          width: 60%;
+          a {
+            @include text($c0-secondary, $text-base, $fw-regular);
+            line-height: 50px;
+            position: relative;
+            &:hover {
+              color: $c0-dark;
+              transition: all 0.5s;
+            }
+            &:hover::before {
+              content: "";
+              background-color: $bg0-dark;
+              position: absolute;
+              width: 100%;
+              height: 1px;
+              bottom: 0;
+              left: 0;
+              transition: all 0.5s;
+            }
+          }
+          .item {
+            padding: 20px;
+            margin-right: 20px;
+            border-right: solid $c0-secondary 1px;
+            a:first-of-type {
+              margin-bottom: 10px;
+            }
+          }
+        }
+        &:hover {
+          .nav-2__item {
+            overflow: hidden;
+            transform: translate(-50%, 0);
+            visibility: visible;
+            transition: all 0.5s;
+          }
+        }
+      }
+      .nav-3 {
+        height: 100%;
+        width: 10%;
+        align-items: center;
+        display: flex;
+        a {
+          @include text($c0-light, $text-base, $fw-regular);
+        }
+        .nav-3__item {
+          z-index: 100;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 20px;
+          width: 60%;
+          background-color: $bg0-light;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+          visibility: hidden;
+          position: absolute;
+          top: 0;
+          left: 50%;
+          transform: translate(-50%, 35%);
+          a {
+            line-height: 50px;
+            position: relative;
+            @include text($c0-secondary, $text-base, $fw-regular);
+            &:hover {
+              color: $c0-dark;
+              transition: all 0.5s;
+            }
+            &:hover::before {
+              content: "";
+              background-color: $bg0-dark;
+              position: absolute;
+              width: 100%;
+              height: 1px;
+              bottom: 0;
+              left: 0;
+              transition: all 0.5s;
+            }
+          }
+          a:first-of-type {
+            margin-bottom: 10px;
+          }
+          .item {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 50%;
+            border-right: solid $c0-secondary 1px;
+          }
+        }
+        &:hover {
+          .nav-3__item {
+            transform: translate(-50%, 27%);
+            transition: all 0.5s;
+            visibility: visible;
+          }
+        }
+      }
+      .nav-4 {
+        height: 100%;
+        width: 10%;
+        align-items: center;
+        display: flex;
+        a {
+          @include text($c0-light, $text-base, $fw-regular);
+        }
+      }
+      .nav-5 {
+        height: 100%;
+        width: 10%;
+        align-items: center;
+        display: flex;
+        a {
+          @include text($c0-light, $text-base, $fw-regular);
+        }
+      }
+    }
+  }
+}
