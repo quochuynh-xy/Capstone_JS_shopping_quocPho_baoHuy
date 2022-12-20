@@ -299,7 +299,7 @@ function showInfo(id) {
             </p>
           </div>
         </div>
-        <div class="modal1__footer">
+        <div class="modal1__footer" style="display: none;" >
           <button>Close</button>
         </div>
       </div>
