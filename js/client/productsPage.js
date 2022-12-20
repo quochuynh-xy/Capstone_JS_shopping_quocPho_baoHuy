@@ -121,8 +121,6 @@ function renderProduct(data) {
     </div>`;
   }
   document.getElementById("js-productsList").innerHTML = htmlContent;
-  // Gán chức năng mở modal
-  assignFeature();
 }
 // filterProduct: lọc sản phẩm
 document.getElementById("js-filterInput").onchange = filterProduct;
