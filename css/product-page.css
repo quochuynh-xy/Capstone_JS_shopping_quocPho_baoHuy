@@ -280,7 +280,7 @@ body {
   border-radius: 5px;
   padding: 2rem;
   max-width: 1000px;
-  max-height: 80vh;
+  /* max-height: 80vh; */
   position: relative;
   box-sizing: content-box;
   /* overflow-y: scroll; */
