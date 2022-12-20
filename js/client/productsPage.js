@@ -330,7 +330,7 @@ function arlertNotify() {
     icon: "success",
     title: "Đã thêm sản phẩm vào giỏ",
     showConfirmButton: false,
-    timer: 1500,
+    timer: 1000,
   });
 }
 // Modal
