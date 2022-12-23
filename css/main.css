@@ -1,13 +1,3 @@
-/* header + footer + những gì dùng chung thì CSS vào đây. */
-body {
-    font-family: 'Work Sans', sans-serif;
-}
-.primary-color {
-    color: #333;
-}
-.secondary-color {
-    color: #999999;
-}
 * {
   margin: 0;
   padding: 0;

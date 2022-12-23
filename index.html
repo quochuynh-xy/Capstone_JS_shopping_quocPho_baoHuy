@@ -4,24 +4,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>E-shop</title>
-    <!-- GG Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <title>Product</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;400;600;700&display=swap"
-      rel="stylesheet"
+      rel="icon"
+      href="https://cdn4.iconfinder.com/data/icons/game-ui-set-3/96/Game_shop_red-256.png"
     />
-    <!-- Boostrap -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://getbootstrap.com/docs/5.2/assets/css/docs.css"
-      rel="stylesheet"
-    />
-    <!-- Fontawesome -->
+    <!-- Font-awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
@@ -29,18 +17,29 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <!-- Animate CSS -->
+    <!-- CSS bootstrap -->
     <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
     />
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="./css/main.min.css" />
-    <!-- Index CSS -->
-    <link rel="stylesheet" href="./css/index.min.css" />
+    <!-- Google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,900;1,300;1,400;1,500;1,600;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Sweet alert -->
+    <link rel="stylesheet" href="sweetalert2.min.css" />
+    <!-- Main css -->
+    <link rel="stylesheet" href="./css/main.css" />
+    <!-- Page css -->
+    <link rel="stylesheet" href="./css/product-page.css" />
   </head>
   <body>
-    <!--Header  -->
+    <!-- HEADER -->
     <header class="header">
       <div class="top-cont">
         <div class="container">
@@ -61,7 +60,7 @@
             <span>Order Online Call Us <a href="tel"> (0123) 456789</a></span>
           </div>
           <div class="cont-right">
-            <a href="">Sign In</a>
+            <a href="./admin/admin.html">Sign In</a>
             <span>Or</span>
             <a href="">Register</a>
           </div>
@@ -82,7 +81,7 @@
             </div>
             <div class="icon-2">
               <i class="fa-solid fa-cart-shopping"></i> <span>MY CART</span>
-              <div  class="header-cart text-center text-white">
+              <div class="header-cart text-center text-white">
                 <p id="number-cart"></p>
               </div>
             </div>
@@ -92,7 +91,7 @@
       <div class="nav">
         <div class="container">
           <div class="nav-1">
-            <a href="./client/products.html">HOME</a>
+            <a href="">HOME</a>
             <div class="nav-1__item">
               <a href="">News</a>
               <a href="">Blog</a>
@@ -157,366 +156,408 @@
         </div>
       </div>
     </header>
-    <!-- Slider -->
-    <section class="slider">
+    <!-- <a
+      class="d-block text-center fs-4 fw-bold text-decoration-none text-warning"
+      href="https://apicrm.cybersoft.edu.vn/files/11-[capstone]-js.pdf"
+      target="_blank"
+      >Đề bài</a
+    > -->
+    <!-- TITLE -->
+    <section class="page-title">
       <div class="container">
-        <div class="slider-left">
-            <p>
-              <button
-                class="btn btn-primary collapsed"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapseWidthExample"
-                aria-expanded="false"
-                aria-controls="collapseWidthExample"
-              >
-                CATEGORIES <i class="fa-solid fa-bars"></i>
-              </button>
+        <h3 class="primary-color">Sản phẩm</h3>
+        <p class="my-0">
+          <a
+            href="../index.html"
+            class="primary-color text-decoration-none fw-semibold"
+            >Trang chủ</a
+          ><span>/</span> Điện thoại
+        </p>
+      </div>
+    </section>
+    <!-- Filter -->
+    <section class="filter">
+      <div class="container d-flex justify-content-between align-items-center">
+        <div>
+          <!-- <p class="my-0 me-3">Danh sách sản phẩm</p> -->
+          <i class="pe-4 fs-4 fa-solid fa-table-cells"></i>
+          <i class="pe-4 fs-4 fa-solid fa-list"></i>
+        </div>
+        <div class="d-flex justify-content-between align-items-center">
+          <form action="">
+            <caption>
+              Lọc theo hãng sản xuất :
+            </caption>
+            <!-- <input
+              id="js-filterInput"
+              class="filter-input p-1 rounded-2"
+              type="text"
+              placeholder="vd: samsung"
+            /> -->
+            <select
+              class="filter-input p-1 rounded-2"
+              name=""
+              id="js-filterInput"
+            >
+              <option value="">Tất cả</option>
+              <option value="samsung">Samsung</option>
+              <option value="iphone">Iphone</option>
+            </select>
+          </form>
+        </div>
+      </div>
+    </section>
+    <!-- Body -->
+    <section class="products container row px-0 justify-content-between">
+      <!-- Left- menu bar -->
+      <div class="products__options d-none d-xl-block col-xl-3">
+        <div class="options__list">
+          <h5
+            class="primary-color fw-normal"
+            data-bs-toggle="collapse"
+            href="#collapse-brand"
+            role="button"
+            aria-expanded="false"
+            aria-controls="collapse-brand"
+          >
+            Danh mục hàng<i class="ms-2 fa-solid fa-chevron-down"></i>
+          </h5>
+          <div class="collapse show" id="collapse-brand">
+            <ul class="text-start ps-0">
+              <li>
+                <a class="secondary-color text-decoration-none" href="#url"
+                  >APPLE</a
+                >
+              </li>
+              <li>
+                <a class="secondary-color text-decoration-none" href="#url"
+                  >Samsung</a
+                >
+              </li>
+              <li>
+                <a class="secondary-color text-decoration-none" href="#url"
+                  >Xiaomi</a
+                >
+              </li>
+              <li>
+                <a class="secondary-color text-decoration-none" href="#url"
+                  >Huawei</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="options__list">
+          <h5
+            class="primary-color fw-normal"
+            data-bs-toggle="collapse"
+            href="#collapse-filter"
+            role="button"
+            aria-expanded="false"
+            aria-controls="collapse-filter"
+          >
+            Tùy chỉnh<i class="ms-2 fa-solid fa-chevron-down"></i>
+          </h5>
+          <div class="collapse show" id="collapse-filter">
+            <ul class="text-start ps-0">
+              <li>
+                <a class="secondary-color text-decoration-none" href="#url"
+                  >Máy mới</a
+                >
+              </li>
+              <li>
+                <a class="secondary-color text-decoration-none" href="#url"
+                  >Máy cũ/đổi trả</a
+                >
+              </li>
+              <li>
+                <a class="secondary-color text-decoration-none" href="#url"
+                  >Giảm giá nhiều</a
+                >
+              </li>
+              <li>
+                <a class="secondary-color text-decoration-none" href="#url"
+                  >Bán chạy nhất</a
+                >
+              </li>
+              <li>
+                <a class="secondary-color text-decoration-none" href="#url"
+                  >Giá từ thấp đến cao</a
+                >
+              </li>
+              <li>
+                <a class="secondary-color text-decoration-none" href="#url"
+                  >Giá từ cao đến thấp</a
+                >
+              </li>
+              <li>
+                <a class="secondary-color text-decoration-none" href="#url"
+                  >Hàng sắp ra mắt</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="options__list">
+          <h5
+            class="primary-color fw-normal"
+            data-bs-toggle="collapse"
+            href="#collapse-stock"
+            role="button"
+            aria-expanded="false"
+            aria-controls="collapse-stock"
+          >
+            Tình trạng <i class="ms-2 fa-solid fa-chevron-down"></i>
+          </h5>
+          <div class="collapse show" id="collapse-stock">
+            <ul class="text-start ps-0">
+              <li>
+                <a class="secondary-color text-decoration-none" href="#url"
+                  >Còn hàng</a
+                >
+              </li>
+              <li>
+                <a class="secondary-color text-decoration-none" href="#url"
+                  >Hết hàng</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="options__list">
+          <h5
+            class="primary-color fw-normal"
+            data-bs-toggle="collapse"
+            href="#collapse-price"
+            role="button"
+            aria-expanded="false"
+            aria-controls="collapse-price"
+          >
+            Khoảng giá <i class="ms-2 fa-solid fa-chevron-down"></i>
+          </h5>
+          <div class="collapse show" id="collapse-price">
+            <ul class="text-start ps-0">
+              <li>
+                <p class="mb-1">Từ</p>
+                <input class="px-2" type="text" placeholder="0" />
+              </li>
+              <li>
+                <p class="mb-1">Đến</p>
+                <input class="px-2" type="text" placeholder="0" />
+              </li>
+            </ul>
+            <button class="px-4 py-1">Tìm</button>
+          </div>
+        </div>
+        <a href="#url"
+          ><img
+            class="my-4 img-fluid"
+            src="https://cdn.shopify.com/s/files/1/0023/4104/4283/files/fdfdfdf_grande.jpg?v=1643623055"
+            alt=""
+        /></a>
+      </div>
+      <!-- Right- sale items -->
+      <div
+        id="js-productsList"
+        class="products__items col-12 col-xl-9 row px-0"
+      >
+        <!-- one item -->
+        <!-- <div class="col-xl-4 item">
+          <div class="item__detail text-center">
+            <img
+              class="d-block w-75 mx-auto rounded-3"
+              src="https://cdn.shopify.com/s/files/1/0023/4104/4283/products/4_800x.jpg?v=1643602786"
+              alt="phone"
+            />
+            <div class="item__detail__color text-center">
+              <a class="choosed-color color-1" href="#url"></a>
+              <a class="choosed-color color-2" href="#url"></a>
+              <a class="choosed-color color-3" href="#url"></a>
+            </div>
+            <div class="item__detail__actions">
+              <a class="item-action" href="#url"
+                ><i class="fa-regular fa-heart"></i></a
+              ><a class="item-action" href="#url"
+                ><i class="fa-solid fa-code-compare"></i></a
+              ><a class="item-action" href="#url"
+                ><i class="fa-solid fa-magnifying-glass"></i
+              ></a>
+            </div>
+          </div>
+          <div class="item__info">
+            <h1 class="item__info__name">Iphone 12 pro-Max</h1>
+            <p class="item__info__price">12.000.000 <span>đ</span></p>
+            <div class="item__info__cart">
+              <p class="my-0">
+                Chọn mua<i class="ms-3 fa-solid fa-cart-shopping"></i>
+              </p>
+              <div class="add-to-cart d-flex w-100">
+                <div class="cart__quantity d-flex">
+                  <button
+                    onclick="handlQuantityChange(event,'minus')"
+                    class="quantity-btn js-btn-minus"
+                  >
+                    -
+                  </button>
+                  <input
+                    class="px-1 text-center js-count"
+                    type="number"
+                    value="1"
+                  />
+                  <button
+                    onclick="handlQuantityChange(event,'plus')"
+                    class="quantity-btn js-btn-plus"
+                  >
+                    +
+                  </button>
+                </div>
+                <div class="cart__add">
+                  <button class="js-add-btn add__btn px-2">Thêm vào giỏ</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <!-- one item -->
+
+        <!-- Loading spinner -->
+        <div class="text-center">
+          <div class="spinner-border mt-5" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- FOOTER -->
+    <!-- SHOPPING CART -->
+    <section class="cart">
+      <header class="cart__header">
+        <span>Giỏ hàng</span>
+        <i class="js-close-cart fa-solid fa-xmark"></i>
+      </header>
+      <main class="cart__body">
+        <div class="item" id="listOfItems">
+          <!-- one item -->
+          <!-- <section class="item__list">
+              <span class="js-item-remove item__remove">Xóa</span>
+              <div class="item__img">
+                <img
+                  src="https://cdn.tgdd.vn/Products/Images/42/235838/Galaxy-S22-Ultra-Burgundy-600x600.jpg"
+                  alt="Item img"
+                />
+              </div>
+              <div class="item__info">
+                <h4 class="item__name">Iphone 12 pro-Max</h4>
+                <p class="item__price">Đơn giá:<span>12.000.000đ</span></p>
+                <div class="item__count">
+                  <p>Số lượng:</p>
+                  <div class="item-control">
+                    <span class="js-item-minus ctrl-btn fw-bold">-</span>
+                    <span class=""><input class="item-quantity fw-bolder text-center" type="text" value="1"></span>
+                    <span class="js-item-plus ctrl-btn fw-bold">+</span>
+                  </div>
+                </div>
+                <p class="item__sum-price">Thành tiền:<span>12.000.000đ</span></p>
+              </div>
+            </section> -->
+          <!-- one item -->
+          <div class="text-center">
+            <p class="fs-4">Giỏ hàng đang trống</p>
+            <img
+              class="imgfluid w-25"
+              src="https://cdn4.iconfinder.com/data/icons/e-commerce-and-online-shopping-outline/512/cancel_basket_empty_delete_cart_store-256.png"
+              alt=""
+            />
+          </div>
+        </div>
+      </main>
+      <footer class="cart__footer">
+        <div class="cash">
+          <p class="cash__txt">Tổng tiền:</p>
+          <p class="js-total-bill cash__total">0<span>đ</span></p>
+        </div>
+        <div class="cart-btn">
+          <button id="moveToCheckout" class="cart__order">Thanh toán</button>
+          <button onclick="handleEmptyCart()" class="cart__clear">
+            Xóa tất cả
+          </button>
+        </div>
+      </footer>
+    </section>
+    <div class="js-cart-outer cart-outer"></div>
+    <!-- MODAL -->
+    <section id="itemModal" class="itemModal align-items-center">
+      <div class="modal__content w-75 mx-auto row justify-content-center">
+        <p><i class="closeModal fa-regular fa-circle-xmark"></i></p>
+        <div class="modal__content__img col-5">
+          <img
+            class="d-block w-100 mx-0 rounded-3"
+            src="https://cdn.shopify.com/s/files/1/0023/4104/4283/products/4_800x.jpg?v=1643602786"
+            alt="image"
+          />
+          <p class="mt-2 text-center fs-4 text-warning">
+            <span class="fs-5">Hiện có:</span> 7 <span class="fs-5">sp</span>
+          </p>
+        </div>
+        <div class="modal__content__detail col-7">
+          <div class="mb-4">
+            <h1 class="modal__deltail__name">Iphone 12 Promax</h1>
+            <p class="modal__deltail__price">12.000.000đ</p>
+            <p class="mb-1 fs-4 text-decoration-underline">
+              Thông tin chi tiết:
             </p>
-            <div class="drop-cont" >
-              <div
-                class="collapse-vertical collapse"
-                id="collapseWidthExample"  
-              >
-                <div class="card card-body" >
-                  <a href="">item </a>
-                  <a href="">item </a>
-                  <a href="">item </a>
-                  <a href="">item </a>
-                  <a href="">item </a>
-                  <a href="">item </a>
-                  <a href="">item </a>
-                  <a href="">item </a>
-                  <a href="">item </a>
-                </div>
-              </div>
-            </div>
-        </div>
-        <!-- Slider -->
-        <div class="slider-right">
-          <div
-          id="carouselExampleControls"
-          class="carousel slide"
-          data-bs-ride="carousel"
-        >
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <svg
-                class="bd-placeholder-img bd-placeholder-img-lg d-block w-100"
-                width="800"
-                height="400"
-                xmlns="http://www.w3.org/2000/svg"
-                role="img"
-                aria-label="Placeholder: First slide"
-                preserveAspectRatio="xMidYMid slice"
-                focusable="false"
-              >
-                <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#777"></rect>
-                <text x="50%" y="50%" fill="#555" dy=".3em">First slide</text>
-              </svg>
-            </div>
-            <div class="carousel-item">
-              <svg
-                class="bd-placeholder-img bd-placeholder-img-lg d-block w-100"
-                width="800"
-                height="400"
-                xmlns="http://www.w3.org/2000/svg"
-                role="img"
-                aria-label="Placeholder: Second slide"
-                preserveAspectRatio="xMidYMid slice"
-                focusable="false"
-              >
-                <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#666"></rect>
-                <text x="50%" y="50%" fill="#444" dy=".3em">Second slide</text>
-              </svg>
-            </div>
-          </div>
-          <button
-            class="carousel-control-prev"
-            type="button"
-            data-bs-target="#carouselExampleControls"
-            data-bs-slide="prev"
-          >
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button
-            class="carousel-control-next"
-            type="button"
-            data-bs-target="#carouselExampleControls"
-            data-bs-slide="next"
-          >
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div>
-    
-        </div>
-    </section>
-    <!-- Product -->
-    <section class="feature-product">
-      <div class="container">
-        <div class="new-product">
-          <h2>New Arrivals</h1>
-          <div class="col">
-            <div class="row-fea">
-              <div class="item-left">
-                <img src="./image/product2.png" alt="1">
-              </div>
-              <div class="item-right">
-                <p>Iphone 13 pro</p>
-                <span>$220.18</span>
-                <div class="icon-star">
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                </div>
-              </div>
-            </div>
-            <div class="row-fea">
-              <div class="item-left">
-                <img src="./image/product2.png" alt="1">
-              </div>
-              <div class="item-right">
-                <p>Iphone 13 pro</p>
-                <span>$220.18</span>
-                <div class="icon-star">
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                </div>
-              </div>
-            </div>
-            <div class="row-fea">
-              <div class="item-left">
-                <img src="./image/product2.png" alt="1">
-              </div>
-              <div class="item-right">
-                <p>Iphone 13 pro</p>
-                <span>$220.18</span>
-                <div class="icon-star">
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                </div>
-              </div>
+            <div class="modal__deltail__des">
+              <ul class="px-0">
+                <li>Tên sản phẩm: <span>Ai phôn 12 bờ rồ.</span></li>
+                <li>Kích thước màn hình: <span>21 inch.</span></li>
+                <li>Độ phân giải camera trước: <span>21 Megapixel.</span></li>
+                <li>Độ phân giải camera sau: <span>30 Megapixel.</span></li>
+                <li>Hãng sản xuất: <span>samsung.</span></li>
+                <li>Chi tiết sản phẩm:</li>
+                <li>
+                  <i>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Corrupti ea architecto velit doloremque maiores quis esse
+                    sequi assumenda. Totam amet eos nemo reprehenderit
+                    blanditiis dicta, nihil necessitatibus quisquam! Esse,
+                    consequuntur? Lorem ipsum dolor sit, amet consectetur
+                    adipisicing elit. Voluptatibus minus minima doloremque
+                    tenetur, sequi aliquid dolorum accusantium ipsam asperiores
+                    distinctio quaerat dolores magni debitis.</i
+                  >
+                </li>
+              </ul>
             </div>
           </div>
         </div>
-        <div class="fea-product">
-          <h2>Feature Product</h1>
-            <div class="col">
-              <div class="row-fea">
-                <div class="item-left">
-                  <img src="./image/product2.png" alt="1">
-                </div>
-                <div class="item-right">
-                  <p>Iphone 13 pro</p>
-                  <span>$220.18</span>
-                  <div class="icon-star">
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="row-fea">
-                <div class="item-left">
-                  <img src="./image/product2.png" alt="1">
-                </div>
-                <div class="item-right">
-                  <p>Iphone 13 pro</p>
-                  <span>$220.18</span>
-                  <div class="icon-star">
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="row-fea">
-                <div class="item-left">
-                  <img src="./image/product2.png" alt="1">
-                </div>
-                <div class="item-right">
-                  <p>Iphone 13 pro</p>
-                  <span>$220.18</span>
-                  <div class="icon-star">
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-        </div>
-        <div class="best-seller">
-          <h2>Best Sellers</h1>
-            <div class="col">
-              <div class="row-fea">
-                <div class="item-left">
-                  <img src="./image/product2.png" alt="1">
-                </div>
-                <div class="item-right">
-                  <p>Iphone 13 pro</p>
-                  <span>$220.18</span>
-                  <div class="icon-star">
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="row-fea">
-                <div class="item-left">
-                  <img src="./image/product2.png" alt="1">
-                </div>
-                <div class="item-right">
-                  <p>Iphone 13 pro</p>
-                  <span>$220.18</span>
-                  <div class="icon-star">
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="row-fea">
-                <div class="item-left">
-                  <img src="./image/product2.png" alt="1">
-                </div>
-                <div class="item-right">
-                  <p>Iphone 13 pro</p>
-                  <span>$220.18</span>
-                  <div class="icon-star">
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-        </div>
+        <footer class="modal__footer">
+          <h3>SOCIAL SHARE</h3>
+          <div class="modal__footer__social">
+            <a href="#url" class="bg-fb fa-brands fa-facebook-f"></a>
+            <a href="#url" class="bg-tw fa-brands fa-twitter"></a>
+            <a href="#url" class="bg-gg fa-brands fa-google-plus-g"></a>
+          </div>
+        </footer>
       </div>
     </section>
-    <!--Top product  -->
-    <section class="top-product">
-      <div class="container">
-        <h2>Top Selling Products</h2>
-        <p>With Apple Trade In, you can get credit toward <br> a new Phone when you trade.</p>
-        <div class="product-cont-top">
-          <div class="container8x">
-            <div class="col">
-              <div class="row">
-                <div class="item">
-                  <div class="item-body">
-                    <img src="https://cdn.shopify.com/s/files/1/0023/4104/4283/products/9_1f747b29-001e-450f-8939-d619d6479bca_540x.jpg?v=1643606162" alt="item1">
-                    <h3>Iphone 13 Pro</h3>
-                    <div class="alter-text">
-                      <i class="fa-solid fa-plus"></i> <span>Select Option</span>
-                    </div>
-                    <div class="item-icon">
-                      <i class="fa-regular fa-heart"></i>
-                      <i class="fa-solid fa-shuffle"></i>
-                      <i class="fa-solid fa-magnifying-glass"></i>
-                    </div>
-                    <div class="change-color">
-                      <div class="color-red"></div>
-                      <div class="color-blue"></div>
-                      <div class="color-black"></div>
-                    </div>
-                  </div>
-                  <div class="item-price">
-                    <span>$221.37</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="row">
-                <div class="item">
-                  <div class="item-body">
-                    <img src="https://cdn.shopify.com/s/files/1/0023/4104/4283/products/9_1f747b29-001e-450f-8939-d619d6479bca_540x.jpg?v=1643606162" alt="item1">
-                    <h3>Iphone 13 Pro</h3>
-                    <div class="alter-text">
-                      <i class="fa-solid fa-plus"></i> <span>Select Option</span>
-                    </div>
-                    <div class="item-icon">
-                      <i class="fa-regular fa-heart"></i>
-                      <i class="fa-solid fa-shuffle"></i>
-                      <i class="fa-solid fa-magnifying-glass"></i>
-                    </div>
-                    <div class="change-color">
-                      <div class="color-red"></div>
-                      <div class="color-blue"></div>
-                      <div class="color-black"></div>
-                    </div>
-                  </div>
-                  <div class="item-price">
-                    <span>$221.37</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="row">
-                <div class="item">
-                  <div class="item-body">
-                    <img src="https://cdn.shopify.com/s/files/1/0023/4104/4283/products/9_1f747b29-001e-450f-8939-d619d6479bca_540x.jpg?v=1643606162" alt="item1">
-                    <h3>Iphone 13 Pro</h3>
-                    <div class="alter-text">
-                      <i class="fa-solid fa-plus"></i> <span>Select Option</span>
-                    </div>
-                    <div class="item-icon">
-                      <i class="fa-regular fa-heart"></i>
-                      <i class="fa-solid fa-shuffle"></i>
-                      <i class="fa-solid fa-magnifying-glass"></i>
-                    </div>
-                    <div class="change-color">
-                      <div class="color-red"></div>
-                      <div class="color-blue"></div>
-                      <div class="color-black"></div>
-                    </div>
-                  </div>
-                  <div class="item-price">
-                    <span>$221.37</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-    <!-- Payment -->
-    <!-- Footer -->
-
-    <!-- Boostrap -->
+    <!-- Bootstrap JS -->
     <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
       crossorigin="anonymous"
     ></script>
+    <!-- Products prototypes -->
+    <script src="./js/src/products.js"></script>
+    <!-- Axios src-->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.0/axios.min.js"
+      integrity="sha512-OdkysyYNjK4CZHgB+dkw9xQp66hZ9TLqmS2vXaBrftfyJeduVhyy1cOfoxiKdi4/bfgpco6REu6Rb+V2oVIRWg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!-- sweet alert -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- main page JS -->
+    <script src="./js/client/productsPage.js"></script>
   </body>
 </html>

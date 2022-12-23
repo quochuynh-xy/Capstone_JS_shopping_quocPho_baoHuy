@@ -77,7 +77,7 @@ function renderHtml(data) {
                 <td>${data[i].name}</td>
                 <td>${data[i].price}</td>
                 <td colspan="2"><img src="${data[i].img}" alt="" /></td>
-                <td style="overflow:auto;height:200px; " class="p-2">${data[i].desc}</td>
+                <td style="overflow:auto;height:200px" class="my-2 custom-text">${data[i].desc}</td>
                 <td >
                 <button onclick="getUpdate('${data[i].id}')" class="btn btn-info mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-regular fa-pen-to-square" ></i>
                 </button>
@@ -168,7 +168,8 @@ function getUpdate(id) {
     document
       .getElementById("btnUpdate")
       .setAttribute("onclick", `updateProduct(${item.id})`);
-
+    document.createAttribute("data-bs-dismiss")
+    btnUpdate.setAttribute('data-bs-dismiss','modal')
     // btnCancel
     if (document.getElementById("btnCancel")) return;
     var btnCancel = document.createElement("button");
@@ -177,6 +178,7 @@ function getUpdate(id) {
     btnCancel.classList.add("btn", "btn-danger");
     btnCancel.onclick = cancelUpdate;
     document.getElementById("btnGroup").appendChild(btnCancel);
+    btnCancel.setAttribute('data-bs-dismiss','modal')
   });
 }
 function updateProduct(id) {
@@ -299,7 +301,7 @@ function showInfo(id) {
             </p>
           </div>
         </div>
-        <div class="modal1__footer">
+        <div class="modal1__footer" style="display: none;" >
           <button>Close</button>
         </div>
       </div>
