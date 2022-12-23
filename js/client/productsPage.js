@@ -21,30 +21,19 @@ window.onload = function () {
 };
 // Hàm thay đổi số lượng sản phẩm
 function handlQuantityChange(e, type, stock) {
-  // stock: số lượng item tối đa:
-  // parent của thẻ input, chứa các nút nhấn và nút tăng giảm số lượng sp
   var parent = e.target.parentElement;
-  // chọn đến đối tượng ô input
   var quantity = parent.querySelector(".js-count").value * 1;
-  //xử lý cộng trừ số lượng sp:
-  //Nếu type = minus thì trừ, plus thì cộng.
-  // quantity>=0 và <= stock
   if (type == "minus") {
     quantity -= 1;
   } else {
     quantity += 1;
   }
-  // Sau khi cộng chán chê, kiểm tra lại số lượng.
-  // Nếu > stock thì giới hạn là stock, nếu < 0 thì là 0
   if (quantity > stock) alertMess("Vượt quá số lượng hàng hiện có");
   quantity > stock ? (quantity = stock) : quantity;
   quantity < 0 ? (quantity = 0) : quantity;
-  // Đưa số lượng quantity vào ô input
   parent.querySelector(".js-count").value = quantity;
 }
-// fetchProductsData: lấy data từ api
 function fetchProductsData() {
-  // lụm dữ liệu qua api
   var promise = axios({
     url: apiURL,
     method: "GET",
@@ -152,31 +141,23 @@ function filterProduct() {
 }
 // handleAddToCart: thêm sản phẩm vào giỏ hàng
 function handleAddToCart(e, id) {
-  // cart = [{product:{obj item}, quantity: 1-n}, {product:{obj item}, quantity: 1-n}]
-  // cartItem = { product:{obj item}, count: 1-n, inStock: n}
   var cartItem = {};
   var cartIndex = -1;
-  // Lấy số lượng hàng
   var take =
     e.target.parentElement.parentElement.querySelector(".js-count").value * 1;
-  // Ngăn ngừa các cháu thêm số lượng < 0
   if (!take) return;
   axios({ url: apiURL + `/${id}`, method: "GET" })
     .then(function (response) {
       cartItem.product = response.data;
-      // Kiểm tra sự tồn tại của sản phẩm trong giỏ hàng.
       for (let i = 0; i < cart.length; i++) {
         if (cart[i].product["id"] == id) cartIndex = i;
       }
-      // Nếu có tồn tại thì cộng dồn số lượng muốn mua.
       if (cartIndex != -1) {
-        cart[cartIndex].quantity += take; // số lượng items chọn mua
-        // // Nếu số lượng hàng mua nhiều hơn inStock thì chỉ cho tối đa == inStock.
+        cart[cartIndex].quantity += take;
         if (cart[cartIndex].quantity >= cart[cartIndex].inStock) {
           cart[cartIndex].quantity = cart[cartIndex].inStock;
         }
       } else {
-        // Nếu không có thì bỏ sản phẩm mới và số lượng muốn mua vào obj cartItem, rồi bỏ vào mảng giỏ hàng.
         cartItem.product = response.data;
         cartItem.inStock = response.data.stock;
         take >= response.data.stock
@@ -184,9 +165,7 @@ function handleAddToCart(e, id) {
           : (cartItem.quantity = take);
         cart.push(cartItem);
       }
-      // Lưu mảng giỏ hàng xuống local.
       saveCartDataToLocal();
-      // Hiển thị số lượng hàng trong giỏ.
       sumTotalItems ()
       arlertNotify();
       console.log(cart);
