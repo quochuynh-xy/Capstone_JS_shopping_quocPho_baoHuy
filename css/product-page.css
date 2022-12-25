@@ -467,7 +467,7 @@ body {
 .cart .cart__body .item__list {
   display: flex;
   justify-content: space-between;
-  /* padding-bottom: 0.75rem; */
+  padding-bottom: 0.5rem;
   margin-bottom: 0.5rem;
   margin-top: 0.5rem;
   border-bottom: 1px solid #77777780;
