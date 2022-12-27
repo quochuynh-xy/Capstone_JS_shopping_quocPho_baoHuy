@@ -150,6 +150,7 @@ body {
 .products .products__items .item__detail {
   position: relative;
   overflow: hidden;
+  height: 206px;
 }
 .products .products__items .item__detail__color {
   position: absolute;
