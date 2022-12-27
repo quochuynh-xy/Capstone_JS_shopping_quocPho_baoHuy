@@ -151,6 +151,9 @@ body {
   position: relative;
   overflow: hidden;
   height: 206px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 .products .products__items .item__detail__color {
   position: absolute;
